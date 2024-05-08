@@ -34,7 +34,6 @@ export const useHover = (id: string) => {
     }
 
     const { hoverStates, setIsHovered } = context;
-    
     const isHovered = hoverStates[id] || false;
     
     const toggleHovered = (isHovered: boolean) => {

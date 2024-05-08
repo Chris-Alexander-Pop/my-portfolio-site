@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation';
-import { IoGitNetworkOutline } from 'react-icons/io5';
+import { LiaNetworkWiredSolid } from "react-icons/lia";
 
 const WebRingComponent = () => {
     const router = useRouter();
@@ -11,8 +11,11 @@ const WebRingComponent = () => {
     };
 
     return (
-        <div onClick={() => handleExternalLink('https://ece.engineering/')} style={{ cursor: 'pointer' }}>
-            <IoGitNetworkOutline size={30} style={{ marginRight: 25, marginLeft: 12 }} />
+        <div
+            onClick={() => handleExternalLink('https://ece.engineering/')}
+            style={{ cursor: 'pointer' }}
+        >
+            <LiaNetworkWiredSolid size={30} style={{ marginRight: 25, marginLeft: 12 }} />
         </div>
     );
 };

@@ -1,7 +1,8 @@
 // Home.tsx
 import React from "react";
-import Header from "./Header";
-import { HoverProvider } from './HoverContext';
+import Header from "@/_components/Header";
+import Avatar from "@/_components/Avatar";
+import { HoverProvider } from '../_contexts/HoverContext';
 import { Metadata } from 'next'
  
 export const metadata: Metadata = {
@@ -12,7 +13,7 @@ const Home: React.FC = () => {
   return (
     <HoverProvider>
       <Header />
-
+      <Avatar />
 
       
     </HoverProvider>

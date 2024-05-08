@@ -1,8 +1,9 @@
-// Header.tsx
+'use client'
+
 import React from 'react'
 import Link from 'next/link';
 import WebRingComponent from './Webring';
-import { useHover } from './HoverContext';
+import { useHover } from '../_contexts/HoverContext';
 
 import { SocialIcon } from 'react-social-icons'
 import { RiHome2Line } from "react-icons/ri";
@@ -35,14 +36,14 @@ const Header: React.FC<Props> = () => {
                         url="https://www.linkedin.com/in/chris-pop-598b06255/"
                         bgColor="#ffffff"
                         fgColor="#000000"
-                        style={{ marginRight: 10 }}
+                        style={{ marginRight: 5 }}
                     />
                     <SocialIcon
                         target="_blank"
                         url="https://github.com/Chris-Alexander-Pop/"
                         bgColor="#ffffff"
                         fgColor="#000000"
-                        style={{ marginRight: 10 }}
+                        style={{ marginRight: 5 }}
                     />
                     <SocialIcon
                         target="_blank"
@@ -61,8 +62,9 @@ const Header: React.FC<Props> = () => {
                         <div
                             onMouseEnter={() => setIsAboutHovered(true)}
                             onMouseLeave={() => setIsAboutHovered(false)}
+                            style={{ marginRight: 12, marginLeft: 12, transform: isAboutHovered ? 'scale(1.2)' : 'scale(1)' }}
                         >
-                            <BsPerson size={30} style={{ marginRight: 12, marginLeft: 12 }} />
+                            <BsPerson size={32} />
                         </div>
                     </Link>
 
@@ -70,8 +72,9 @@ const Header: React.FC<Props> = () => {
                         <div
                             onMouseEnter={() => setIsResumeHovered(true)}
                             onMouseLeave={() => setIsResumeHovered(false)}
+                            style={{ marginRight: 15, marginLeft: 12, transform: isResumeHovered ? 'scale(1.2)' : 'scale(1)' }}
                         >
-                            <IoDocumentTextOutline size={30} style={{ marginRight: 12, marginLeft: 12 }} />
+                            <IoDocumentTextOutline size={30}/>
                         </div>
                     </Link>
 
@@ -79,8 +82,9 @@ const Header: React.FC<Props> = () => {
                         <div
                             onMouseEnter={() => setIsPortfolioHovered(true)}
                             onMouseLeave={() => setIsPortfolioHovered(false)}
+                            style={{ marginRight: 25, marginLeft: 12, transform: isPortfolioHovered ? 'scale(1.2)' : 'scale(1)' }}
                         >
-                            <GrProjects size={30} style={{ marginRight: 12, marginLeft: 12 }} />
+                            <GrProjects size={25}/>
                         </div>
                     </Link>
                                    
