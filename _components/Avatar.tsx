@@ -1,48 +1,47 @@
 'use client'
 import { motion } from 'framer-motion';
-import { useHover } from '../_contexts/HoverContext';
+import { getHoverStates } from './Header';
+import Image from 'next/image';
+import React from 'react';
 
-
-const Avatar = () => {
-
-    const { isHovered: isAnimatingAbout, toggleHovered: setIsAboutHovered } = useHover('about');
-    const { isHovered: isAnimatingResume, toggleHovered: setIsResumeHovered } = useHover('resume');
-    const { isHovered: isAnimatingPortfolio, toggleHovered: setIsPortfolioHovered } = useHover('portfolio');
+const Avatar: React.FC<{ canAnimate: boolean }> = ({ canAnimate }) => {
+    const { isAboutHovered, isResumeHovered, isPortfolioHovered } = getHoverStates();
 
     const variants = {
-        resting: { scale: 1, rotate: 0, opacity: 1 },
-        aboutAnimation: { scale: 1.2, rotate: 45, opacity: 0.5 },
-        resumeAnimation: { scale: 0.8, rotate: -45, opacity: 0.7 },
-        portfolioAnimation: { scale: 1.5, rotate: 90, opacity: 0.3 },
+        resting: { scale: 1, rotate: 0, opacity: 1, x: 0 },
+        aboutAnimation: { scale: 1, rotate: 0, opacity: 1, x: -350 },
+        resumeAnimation: { scale: 0.8, rotate: 0, opacity: 0.7 },
+        portfolioAnimation: { scale: 1.5, rotate: 0, opacity: 0.3 },
     };
+
+    if (!canAnimate) {
+        for (const key in variants) {
+            variants[key as keyof typeof variants] = { scale: 1, rotate: 0, opacity: 1, x: 0 };
+        }
+    }
 
     return (
         <motion.div
-        className="relative inline-block"
-        initial="resting"
-        animate={
-            isAnimatingAbout
-            ? 'aboutAnimation'
-            : isAnimatingResume
-            ? 'resumeAnimation'
-            : isAnimatingPortfolio
-            ? 'portfolioAnimation'
-            : 'resting'
-        }
-        variants={variants}
+            className="flex items-center justify-center"
+            initial="resting"
+            animate={
+                canAnimate
+                    ? isAboutHovered
+                        ? 'aboutAnimation'
+                        : isResumeHovered
+                        ? 'resumeAnimation'
+                        : isPortfolioHovered
+                        ? 'portfolioAnimation'
+                        : 'resting'
+                    : 'resting'
+            }
+            variants={variants}
         >
-        <div className="w-50 h-50 flex items-center justify-center rounded-full">
-            <div className="border-5 border-black rounded-full overflow-hidden">
-            <img
-                src="/avatar.png"
-                alt="Avatar"
-                className="w-full h-full object-cover rounded-full"
-                style={{ margin: '-5px' }}
-            />
+            <div className="relative">
+                   <Image src="/avatar.png" alt="Avatar" width={384} height={384} className="object-cover rounded-full overflow-hidden border-8 border-black" />
             </div>
-        </div>
         </motion.div>
     );
-    };
+};
 
-    export default Avatar;
+export default Avatar;
