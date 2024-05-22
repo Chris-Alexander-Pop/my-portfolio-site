@@ -15,8 +15,11 @@ type Props = {
 };
 
 export const getHoverStates = () => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { isHovered: isAboutHovered, toggleHovered: setIsAboutHovered } = useHover('about');
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { isHovered: isResumeHovered, toggleHovered: setIsResumeHovered } = useHover('resume');
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { isHovered: isPortfolioHovered, toggleHovered: setIsPortfolioHovered } = useHover('portfolio');
 
   return { isAboutHovered, isResumeHovered, isPortfolioHovered, setIsAboutHovered, setIsResumeHovered, setIsPortfolioHovered };
