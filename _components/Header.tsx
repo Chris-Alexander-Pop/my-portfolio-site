@@ -14,19 +14,17 @@ type Props = {
   returnVar?: boolean;
 };
 
-export const getHoverStates = () => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { isHovered: isAboutHovered, toggleHovered: setIsAboutHovered } = useHover('about');
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { isHovered: isResumeHovered, toggleHovered: setIsResumeHovered } = useHover('resume');
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { isHovered: isPortfolioHovered, toggleHovered: setIsPortfolioHovered } = useHover('portfolio');
+export const GetHoverStates = () => {
+  const { isHovered: isHomeHovered, toggleHovered: setIsHomeHovered, removeOtherHovers: onlyHomeTrue } = useHover('home');
+  const { isHovered: isAboutHovered, toggleHovered: setIsAboutHovered, removeOtherHovers: onlyAboutTrue } = useHover('about');
+  const { isHovered: isResumeHovered, toggleHovered: setIsResumeHovered, removeOtherHovers: onlyResumeTrue } = useHover('resume');
+  const { isHovered: isPortfolioHovered, toggleHovered: setIsPortfolioHovered, removeOtherHovers: onlyPortfolioTrue } = useHover('portfolio');
 
-  return { isAboutHovered, isResumeHovered, isPortfolioHovered, setIsAboutHovered, setIsResumeHovered, setIsPortfolioHovered };
+  return { isHomeHovered, isAboutHovered, isResumeHovered, isPortfolioHovered, setIsHomeHovered, setIsAboutHovered, setIsResumeHovered, setIsPortfolioHovered, onlyHomeTrue, onlyAboutTrue, onlyResumeTrue, onlyPortfolioTrue };
 };
 
 const Header: React.FC<Props> = ({ returnVar = false }) => {
-  const { isAboutHovered, isResumeHovered, isPortfolioHovered, setIsAboutHovered, setIsResumeHovered, setIsPortfolioHovered } = getHoverStates();
+  const { isHomeHovered, isAboutHovered, isResumeHovered, isPortfolioHovered, setIsHomeHovered, setIsAboutHovered, setIsResumeHovered, setIsPortfolioHovered, onlyHomeTrue, onlyAboutTrue, onlyResumeTrue, onlyPortfolioTrue } = GetHoverStates();
 
   return (
     <header>
@@ -34,8 +32,12 @@ const Header: React.FC<Props> = ({ returnVar = false }) => {
         {/* Left Icons */}
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <Link href="http://localhost:3000" passHref>
-            <div>
-              <RiHome2Line size={30} style={{ marginRight: 12, marginLeft: 25 }} />
+            <div
+            onMouseEnter={() => onlyHomeTrue()}
+            onMouseLeave={() => setIsHomeHovered(false)}
+            style={{ marginRight: 15, marginLeft: 12, transform: isHomeHovered ? 'scale(1.2) translate(-2%, +2%)' : 'scale(1)' }}
+            >
+              <RiHome2Line size={30} style={{ marginRight: 0, marginLeft: 15 }} />
             </div>
           </Link>
 
@@ -68,8 +70,8 @@ const Header: React.FC<Props> = ({ returnVar = false }) => {
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <Link href="http://localhost:3000/about" passHref>
             <div
-              onMouseEnter={() => setIsAboutHovered(true)}
-              onMouseLeave={() => setIsAboutHovered(false)}
+              onMouseEnter={() => onlyAboutTrue()}
+              // onMouseLeave={() => setIsAboutHovered(false)}
               style={{ marginRight: 12, marginLeft: 12, transform: isAboutHovered ? 'scale(1.2)' : 'scale(1)' }}
             >
               <BsPerson size={32} />
@@ -78,8 +80,8 @@ const Header: React.FC<Props> = ({ returnVar = false }) => {
 
           <Link href="http://localhost:3000/resume" passHref>
             <div
-              onMouseEnter={() => setIsResumeHovered(true)}
-              onMouseLeave={() => setIsResumeHovered(false)}
+              onMouseEnter={() => onlyResumeTrue()}
+              // onMouseLeave={() => setIsResumeHovered(false)}
               style={{ marginRight: 15, marginLeft: 12, transform: isResumeHovered ? 'scale(1.2)' : 'scale(1)' }}
             >
               <IoDocumentTextOutline size={30} />
@@ -88,8 +90,8 @@ const Header: React.FC<Props> = ({ returnVar = false }) => {
 
           <Link href="http://localhost:3000/portfolio" passHref>
             <div
-              onMouseEnter={() => setIsPortfolioHovered(true)}
-              onMouseLeave={() => setIsPortfolioHovered(false)}
+              onMouseEnter={() => onlyPortfolioTrue()}
+              // onMouseLeave={() => setIsPortfolioHovered(false)}
               style={{ marginRight: 25, marginLeft: 12, transform: isPortfolioHovered ? 'scale(1.2)' : 'scale(1)' }}
             >
               <GrProjects size={25} />
@@ -97,7 +99,7 @@ const Header: React.FC<Props> = ({ returnVar = false }) => {
           </Link>
         </div>
       </div>
-      {returnVar && <pre>{JSON.stringify(getHoverStates(), null, 2)}</pre>}
+      {returnVar && <pre>{JSON.stringify(GetHoverStates(), null, 2)}</pre>}
     </header>
   );
 };

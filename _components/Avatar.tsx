@@ -1,22 +1,22 @@
 'use client'
 import { motion } from 'framer-motion';
-import { getHoverStates } from './Header';
+import { GetHoverStates } from './Header';
 import Image from 'next/image';
 import React from 'react';
 
 const Avatar: React.FC<{ canAnimate: boolean }> = ({ canAnimate }) => {
-    const { isAboutHovered, isResumeHovered, isPortfolioHovered } = getHoverStates();
+    const { isAboutHovered, isResumeHovered, isPortfolioHovered } = GetHoverStates();
 
-    const variants = {
-        resting: { scale: 1, rotate: 0, opacity: 1, x: 0 },
-        aboutAnimation: { scale: 1, rotate: 0, opacity: 1, x: -350 },
-        resumeAnimation: { scale: 0.8, rotate: 0, opacity: 0.7 },
-        portfolioAnimation: { scale: 1.5, rotate: 0, opacity: 0.3 },
-    };
+    const avatarVariants = {
+        resting: { scale: 1, rotate: 0, opacity: 1, x: 0, transition: {duration: 0.3} },
+        aboutAnimation: { scale: 1, rotate: 0, opacity: 1, x: -350, transition: { duration: 0.3, ease: "easeInOut" } },
+        resumeAnimation: { scale: 0.8, rotate: 0, opacity: 0.7, transition: { duration: 0.3, ease: "easeOut" } },
+        portfolioAnimation: { scale: 1.5, rotate: 0, opacity: 0.3, transition: { duration: 0.3, ease: "easeIn" } },
+      };
 
     if (!canAnimate) {
-        for (const key in variants) {
-            variants[key as keyof typeof variants] = { scale: 1, rotate: 0, opacity: 1, x: 0 };
+        for (const key in avatarVariants) {
+            avatarVariants[key as keyof typeof avatarVariants] = { scale: 1, rotate: 0, opacity: 1, x: 0, transition: {duration: 0, ease: ""} };
         }
     }
 
@@ -35,7 +35,7 @@ const Avatar: React.FC<{ canAnimate: boolean }> = ({ canAnimate }) => {
                         : 'resting'
                     : 'resting'
             }
-            variants={variants}
+            variants={avatarVariants}
         >
             <div className="relative">
                    <Image src="/avatar.png" alt="Avatar" width={384} height={384} className="object-cover rounded-full overflow-hidden border-8 border-black" />

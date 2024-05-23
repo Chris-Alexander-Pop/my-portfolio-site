@@ -2,7 +2,6 @@ import React from "react";
 import Header from "@/_components/Header";
 import Avatar from "@/_components/Avatar";
 import AboutDescriptionHoverAnimation from "@/_components/AboutDescriptionHoverAnimation";
-import AboutDescription from "@/_components/AboutDescription";
 import { HoverProvider } from '../_contexts/HoverContext';
 import { Metadata } from 'next'
 
@@ -25,9 +24,6 @@ const Home: React.FC = () => {
             <AboutDescriptionHoverAnimation />
             {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" className="w-96 h-96"></svg> */}
           </div>
-          {/* <div className="absolute right-0">
-            <AboutDescription/>
-          </div> */}
         </div>
       </body>
     </HoverProvider>
