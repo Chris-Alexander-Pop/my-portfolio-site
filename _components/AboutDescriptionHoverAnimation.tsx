@@ -16,7 +16,7 @@ const AboutDescriptionHoverAnimation: React.FC<{}> = () => {
                 opacity: 1,
                 scale: 1,
                 transition: { delay: 0.3 },
-                x:30
+                x:60
               });
             controls.start({
                 d: "M2,192 A64,0 0 1,1 198,192",
