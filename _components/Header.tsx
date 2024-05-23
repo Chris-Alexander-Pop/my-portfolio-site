@@ -1,7 +1,6 @@
 'use client'
 import React from 'react';
 import Link from 'next/link';
-import WebRingComponent from './Webring';
 import { useHover } from '../_contexts/HoverContext';
 
 import { SocialIcon } from 'react-social-icons';
@@ -9,6 +8,8 @@ import { RiHome2Line } from 'react-icons/ri';
 import { IoDocumentTextOutline } from 'react-icons/io5';
 import { GrProjects } from 'react-icons/gr';
 import { BsPerson } from 'react-icons/bs';
+import { LiaNetworkWiredSolid } from "react-icons/lia";
+
 
 type Props = {
   returnVar?: boolean;
@@ -63,7 +64,11 @@ const Header: React.FC<Props> = ({ returnVar = false }) => {
             fgColor="#000000"
           />
 
-          <WebRingComponent />
+          <div onClick={() => {}} style={{ cursor: 'pointer' }}>
+            <Link href="https://ece.engineering/" target="_blank" passHref>
+              <LiaNetworkWiredSolid size={30} style={{ marginRight: 25, marginLeft: 12 }} />
+            </Link>
+          </div>
         </div>
 
         {/* Right Icons */}
