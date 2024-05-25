@@ -1,8 +1,9 @@
 'use client'
-import { motion, useAnimation } from 'framer-motion';
 import React, { useEffect } from 'react';
-import { GetHoverStates } from './Header';
+import { motion, useAnimation } from 'framer-motion';
+import { GetHoverStates } from '@/_components/Header';
 import AboutDescription from "@/_components/AboutDescription";
+import AboutTechStack from '@/_components/AboutTechStack';
 
 
 const AboutDescriptionHoverAnimation: React.FC<{}> = () => {
@@ -57,7 +58,7 @@ const AboutDescriptionHoverAnimation: React.FC<{}> = () => {
                 initial={{ opacity: 0 }}
             >
                 <AboutDescription />
-                <AboutDescription /><AboutDescription />
+                <AboutTechStack />
             </motion.div>
         </div>
     );

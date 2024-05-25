@@ -1,17 +1,13 @@
 import React from "react";
-
-export const TechnologyTemplate = () => {
-    return(
-        <div>
-
-        </div>
-    )
-}
+import Image from "next/image";
 
 const AboutTechStack: React.FC<{}> = () => {
     return(
         <div>
-            <TechnologyTemplate/>
+            <Image src="/Icons/React.svg" alt="React" width={32} height={32} className=""/>
+            <Image src="/Icons/TypeScript.svg" alt="TypeScript" width={32} height={32} className=""/>
+            <Image src="/Icons/TailwindCSS.svg" alt="TailwindCSS" width={32} height={32} className=""/>
+            <Image src="/Icons/Next.js.svg" alt="NEXT.js" width={32} height={32} className=""/>
         </div>
     );
 };

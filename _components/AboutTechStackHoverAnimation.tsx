@@ -2,8 +2,6 @@
 import { motion, useAnimation } from 'framer-motion';
 import React, { useEffect } from 'react';
 import { GetHoverStates } from './Header';
-import { TechnologyTemplate, } from './AboutTechStack';
-
 
 const AboutTechStackHoverAnimation: React.FC<{}> = () => {
     const { isAboutHovered } = GetHoverStates();
