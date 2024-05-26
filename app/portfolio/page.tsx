@@ -1,7 +1,7 @@
 // Home.tsx
 import React from "react";
 import Head from "next/head";
-import Header from "../../_components/Header";
+import Header from "../../components/Header";
 
 const Home: React.FC = () => {
   return (

@@ -127,7 +127,8 @@ interface Technology {
             {technologies.map((technology) => (
               <button
                 key={technology.name}
-                className="px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold"
+                className="px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300 text-gray-700"
+                style={{ marginRight: 8 }}
                 onClick={() => handleButtonClick(technology)}
               >
                 {technology.name}

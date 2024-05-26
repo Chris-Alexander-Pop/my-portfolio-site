@@ -1,7 +1,7 @@
 'use client'
 import React from 'react';
 import Link from 'next/link';
-import { useHover } from '../_contexts/HoverContext';
+import { useHover } from '../contexts/HoverContext';
 
 import { SocialIcon } from 'react-social-icons';
 import { RiHome2Line } from 'react-icons/ri';

@@ -1,9 +1,9 @@
 'use client'
 import React, { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
-import { GetHoverStates } from '@/_components/Header';
-import AboutDescription from "@/_components/AboutDescription";
-import { TechnologyDropdown } from '@/_components/AboutTechStack';
+import { GetHoverStates } from '@/components/Header';
+import AboutDescription from "@/components/AboutDescription";
+import { TechnologyDropdown } from '@/components/AboutTechStack';
 
 
 const AboutDescriptionHoverAnimation: React.FC<{}> = () => {
