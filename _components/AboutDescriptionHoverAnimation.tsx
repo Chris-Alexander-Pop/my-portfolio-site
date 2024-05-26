@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { GetHoverStates } from '@/_components/Header';
 import AboutDescription from "@/_components/AboutDescription";
-import AboutTechStack from '@/_components/AboutTechStack';
+import { TechnologyDropdown } from '@/_components/AboutTechStack';
 
 
 const AboutDescriptionHoverAnimation: React.FC<{}> = () => {
@@ -58,7 +58,7 @@ const AboutDescriptionHoverAnimation: React.FC<{}> = () => {
                 initial={{ opacity: 0 }}
             >
                 <AboutDescription />
-                <AboutTechStack />
+                <TechnologyDropdown />
             </motion.div>
         </div>
     );
