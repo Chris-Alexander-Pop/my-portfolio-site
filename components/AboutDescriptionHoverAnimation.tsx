@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { GetHoverStates } from '@/components/Header';
 import AboutDescription from "@/components/AboutDescription";
-import { TechnologyDropdown } from '@/components/AboutTechStack';
+import { ScrollWheel } from '@/components/AboutTechStack';
 
 
 const AboutDescriptionHoverAnimation: React.FC<{}> = () => {
@@ -58,7 +58,7 @@ const AboutDescriptionHoverAnimation: React.FC<{}> = () => {
                 initial={{ opacity: 0 }}
             >
                 <AboutDescription />
-                <TechnologyDropdown />
+                <ScrollWheel />
             </motion.div>
         </div>
     );

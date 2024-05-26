@@ -10,8 +10,11 @@ const config: Config = {
   theme: {
     extend: {
         spacing: {
-        '88': '22rem', // Custom value
+          '88': '22rem', // Custom value
       },
+        width: {
+          30: "120px", // Adjust the value as needed
+        },
            
     },
 
