@@ -3,7 +3,6 @@ import React from "react";
 import Header from "@/components/Header";
 import Avatar from "@/components/Avatar";
 import AboutDescriptionHoverAnimation from "@/components/AboutDescriptionHoverAnimation";
-import { TechnologyDropdown } from "@/components/AboutTechStack";
 import { HoverProvider } from "@/contexts/HoverContext";
 import { motion, useAnimation } from "framer-motion";
 

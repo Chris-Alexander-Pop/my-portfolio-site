@@ -81,72 +81,72 @@ export const AboutTools: React.FC<{}> = () => {
     );
 };
 
-interface Technology {
-    name: string;
-    content: React.ReactNode; // Represents any valid React child element
-  }
+// interface Technology {
+//     name: string;
+//     content: React.ReactNode;
+//   }
   
-  export const TechnologyDropdown: React.FC<{}> = () => {
-    const [activeTechnology, setActiveTechnology] = useState<Technology | null>(null);
-    const controls = useAnimation();
+//   export const TechnologyDropdown: React.FC<{}> = () => {
+//     const [activeTechnology, setActiveTechnology] = useState<Technology | null>(null);
+//     const controls = useAnimation();
 
-    const technologies = [
-        { name: "Languages", content: <AboutLanguages /> },
-        { name: "Frameworks", content: <AboutFrameworks /> },
-        { name: "Backend", content: <AboutBackend />},
-        { name: "Databases", content: <AboutDatabases />},
-        { name: "Servers", content: <AboutServers />},
-        { name: "Tools", content: <AboutTools />},
-      ];
+//     const technologies = [
+//         { name: "Languages", content: <AboutLanguages /> },
+//         { name: "Frameworks", content: <AboutFrameworks /> },
+//         { name: "Backend", content: <AboutBackend />},
+//         { name: "Databases", content: <AboutDatabases />},
+//         { name: "Servers", content: <AboutServers />},
+//         { name: "Tools", content: <AboutTools />},
+//       ];
   
-    const variants = {
-      hidden: {
-        opacity: 0,
-        height: 0,
-        transition: { duration: 10.3, easeInOut },
-      },
-      visible: {
-        opacity: 1,
-        height: "auto",
-        transition: { duration: 10.3, easeInOut },
-      },
-    };
+//     const variants = {
+//       hidden: {
+//         opacity: 0,
+//         height: 0,
+//         transition: { duration: 10.3, easeInOut },
+//       },
+//       visible: {
+//         opacity: 1,
+//         height: "auto",
+//         transition: { duration: 10.3, easeInOut },
+//       },
+//     };
   
-    const handleButtonClick = (technology: Technology) => {
-        const newState = technology === activeTechnology ? null : technology;
-        setActiveTechnology(newState); 
+//     const handleButtonClick = (technology: Technology) => {
+//         const newState = technology === activeTechnology ? null : technology;
+//         setActiveTechnology(newState); 
     
-        controls.start(newState ? "visible" : "hidden");
-      };
+//         controls.start(newState ? "visible" : "hidden");
+//       };
     
     
-      return (
-        <div className="">
-            <div className="flex flex-wrap justify-center mb-4"> 
-            {technologies.map((technology) => (
-              <button
-                key={technology.name}
-                className="mr-2 mt-2 px-3 py-2 rounded-full bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold w-30"
-                onClick={() => handleButtonClick(technology)}
-              >
-                {technology.name}
-              </button>
-            ))}
-          </div>
-          {activeTechnology && (
-            <motion.div animate={controls} variants={variants}>
-              {activeTechnology.content}
-            </motion.div>
-          )}
-        </div>
-      );
-    };
+//       return (
+//         <div className="">
+//             <div className="flex flex-wrap justify-center mb-4"> 
+//             {technologies.map((technology) => (
+//               <button
+//                 key={technology.name}
+//                 className="mr-2 mt-2 px-3 py-2 rounded-full bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold w-30"
+//                 onClick={() => handleButtonClick(technology)}
+//               >
+//                 {technology.name}
+//               </button>
+//             ))}
+//           </div>
+//           {activeTechnology && (
+//             <motion.div animate={controls} variants={variants}>
+//               {activeTechnology.content}
+//             </motion.div>
+//           )}
+//         </div>
+//       );
+//     };
 
     
 
 export const ScrollWheel = () => {
   const controls = useAnimation();
-  const scrollRef = useRef(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const dragX = useRef(0);
   const distX = useRef(0);
@@ -169,14 +169,14 @@ export const ScrollWheel = () => {
 
       const animateScroll = () => {
         controls.start({
-          x: [savedX.current, -scrollWidth + containerWidth - 20],
+          x: [20, -scrollWidth + containerWidth - 20],
           transition: {
             x: {
               repeat: Infinity,
               repeatType: 'loop',
               duration: 30,
               ease: 'linear',
-              onUpdate: (value) => {
+              onUpdate: (value: any) => {
                 savedX.current = value;
               },
             },
@@ -197,45 +197,49 @@ export const ScrollWheel = () => {
   const handleDragEnd = () => {
     setIsDragging(false);
     const moveX = dragX.current - distX.current + savedX.current; 
-    controls.start({
-      x: [moveX, -scrollRef.current?.scrollWidth + scrollRef.current?.offsetWidth - 20],
-      transition: {
-        x: {
-          repeat: Infinity,
-          repeatType: 'loop',
-          duration: 30,
-          ease: 'linear',
-          onUpdate: (value) => {
-            savedX.current = value;
+    if (scrollRef.current?.scrollWidth){
+      controls.start({
+        x: [moveX, -scrollRef.current?.scrollWidth + scrollRef.current?.offsetWidth - 20],
+        transition: {
+          x: {
+            repeat: Infinity,
+            repeatType: 'loop',
+            duration: 30,
+            ease: 'linear',
+            onUpdate: (value: any) => {
+              savedX.current = value;
+            },
           },
         },
-      },
-    });
+      });
+    }
   };
 
   return (
     <div className="overflow-hidden py-10 w-96">
-      <motion.div
-        className="flex"
-        drag="x"
-        dragConstraints={{ left: -scrollRef.current?.scrollWidth + scrollRef.current?.offsetWidth - 20, right: 20 }}
-        dragElastic={0.1}
-        ref={scrollRef}
-        animate={controls}
-        whileTap={{ cursor: "grabbing" }}
-        onDragStart={handleDragStart}
-        onDrag={(_, info) => dragX.current = info.point.x}
-        onDragEnd={handleDragEnd}
-      >
-        {technologies.map((tech, index) => (
-          <motion.div
-            key={index}
-            className="flex-none bg-gray-200 p-4 m-1 flex justify-center items-center text-2xl rounded-lg shadow-md"
-          >
-            {tech.content}
-          </motion.div>
-        ))}
-      </motion.div>
+      {scrollRef.current?.scrollWidth && 
+        <motion.div
+          className="flex"
+          drag="x"
+          dragConstraints={{ left: -scrollRef.current?.scrollWidth + scrollRef.current?.offsetWidth - 20, right: 20 }}
+          dragElastic={0.1}
+          ref={scrollRef}
+          animate={controls}
+          whileTap={{ cursor: "grabbing" }}
+          onDragStart={handleDragStart}
+          onDrag={(_, info) => dragX.current = info.point.x}
+          onDragEnd={handleDragEnd}
+        >
+          {technologies.map((tech, index) => (
+            <motion.div
+              key={index}
+              className="flex-none bg-gray-200 p-4 m-1 flex justify-center items-center text-2xl rounded-lg shadow-md"
+            >
+              {tech.content}
+            </motion.div>
+          ))}
+        </motion.div>
+      }
     </div>
   );
 };

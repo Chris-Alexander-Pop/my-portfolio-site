@@ -7,7 +7,7 @@ import { ScrollWheel } from '@/components/AboutTechStack';
 
 
 const AboutDescriptionHoverAnimation: React.FC<{}> = () => {
-    const { isAboutHovered } = GetHoverStates();
+    const { isAboutHovered, isPortfolioHovered, isResumeHovered } = GetHoverStates();
     const controls = useAnimation();
     const aboutDescriptionAnimation = useAnimation();
 
@@ -34,24 +34,25 @@ const AboutDescriptionHoverAnimation: React.FC<{}> = () => {
 
     return (
         <div className="relative flex justify-center">
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 200 200"
-                className="w-96 h-96"
-            >
-                <motion.path
-                    fill="none"
-                    stroke="black"
-                    strokeWidth="4"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M2,192 A64,64 0 1,1 198,192"
-                    initial={false}
-                    animate={controls}
-                    transform="rotate(90 100 100)"
-                />
-            </svg>
-            
+            {!isPortfolioHovered && !isResumeHovered && 
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 200 200"
+                    className="w-96 h-96"
+                >
+                    <motion.path
+                        fill="none"
+                        stroke="black"
+                        strokeWidth="4"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M2,192 A64,64 0 1,1 198,192"
+                        initial={false}
+                        animate={controls}
+                        transform="rotate(90 100 100)"
+                    />
+                </svg>
+            }
             <motion.div
                 className="absolute"
                 animate={aboutDescriptionAnimation}
