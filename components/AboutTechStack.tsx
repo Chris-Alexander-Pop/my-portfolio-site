@@ -196,16 +196,15 @@ export const ScrollWheel = () => {
 
   const handleDragEnd = () => {
     setIsDragging(false);
-    const moveX = dragX.current - distX.current + savedX.current; 
+    let moveX = dragX.current - distX.current + savedX.current;
+    console.log(moveX);
     if (scrollRef.current?.scrollWidth){
       controls.start({
         x: [moveX, -scrollRef.current?.scrollWidth + scrollRef.current?.offsetWidth - 20],
         transition: {
           x: {
-            repeat: Infinity,
-            repeatType: 'loop',
-            duration: 30,
-            ease: 'linear',
+            duration: 30 * (-scrollRef.current?.scrollWidth + scrollRef.current?.offsetWidth - 20 - moveX) / (scrollRef.current?.scrollWidth - scrollRef.current?.offsetWidth),
+            ease: 'linear',             
             onUpdate: (value: any) => {
               savedX.current = value;
             },
@@ -215,9 +214,11 @@ export const ScrollWheel = () => {
     }
   };
 
+
+
   return (
     <div className="overflow-hidden py-10 w-96">
-      {scrollRef.current?.scrollWidth && 
+      {scrollRef.current?.scrollWidth ?
         <motion.div
           className="flex"
           drag="x"
@@ -239,6 +240,27 @@ export const ScrollWheel = () => {
             </motion.div>
           ))}
         </motion.div>
+        :
+        <motion.div
+        className="flex"
+        drag="x"
+        dragElastic={0.1}
+        ref={scrollRef}
+        animate={controls}
+        whileTap={{ cursor: "grabbing" }}
+        onDragStart={handleDragStart}
+        onDrag={(_, info) => dragX.current = info.point.x}
+        onDragEnd={handleDragEnd}
+      >
+        {technologies.map((tech, index) => (
+          <motion.div
+            key={index}
+            className="flex-none bg-gray-200 p-4 m-1 flex justify-center items-center text-2xl rounded-lg shadow-md"
+          >
+            {tech.content}
+          </motion.div>
+        ))}
+      </motion.div>
       }
     </div>
   );

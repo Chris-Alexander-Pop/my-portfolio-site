@@ -11,11 +11,13 @@ const config: Config = {
     extend: {
         spacing: {
           '88': '22rem', // Custom value
-      },
+        },
         width: {
           30: "120px", // Adjust the value as needed
         },
-           
+        height: {
+          120: "30rem",
+        }
     },
 
   },

@@ -13,6 +13,9 @@ module.exports = {
       width: {
         30: "120px", // Adjust the value as needed
       },
+      height: {
+        120: "30rem",
+      }
     },
   },
   plugins: [],
