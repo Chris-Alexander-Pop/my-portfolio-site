@@ -6,7 +6,6 @@ import AboutDescriptionHoverAnimation from "@/components/AboutDescriptionHoverAn
 import LineAnimation from "@/components/ResumeDescriptionHoverAnimation";
 import { HoverProvider } from "@/contexts/HoverContext";
 import { motion, useAnimation } from "framer-motion";
-import { ScrollWheel } from "@/components/AboutTechStack";
 
 const HomePage: React.FC = () => {
   const controls = useAnimation();
