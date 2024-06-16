@@ -11,7 +11,7 @@ const Avatar: React.FC<{ canAnimate: boolean }> = ({ canAnimate }) => {
         resting: { scale: 1, rotate: 0, opacity: 1, x: 0, transition: {duration: 0.3} },
         aboutAnimation: { scale: 1, rotate: 0, opacity: 1, x: -350, transition: { duration: 0.3, ease: "easeInOut" } },
         resumeAnimation: { scale: 0.8, rotate: 0, opacity: 1, transition: { duration: 0.3, ease: "easeOut" } },
-        portfolioAnimation: { scale: 1.5, rotate: 0, opacity: 0.3, transition: { duration: 0.3, ease: "easeIn" } },
+        portfolioAnimation: { scale: 0, rotate: 0, opacity: 1, transition: { duration: 1, ease: "easeIn" } },
       };
 
     if (!canAnimate) {

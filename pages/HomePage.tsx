@@ -36,7 +36,7 @@ const HomePage: React.FC = () => {
       <div className="sticky top-0 z-50">
         <Header />
       </div>
-        <div className="relative flex items-center justify-center h-screen bottom-6">
+        <div className="relative flex items-center justify-center h-screen bottom-12">
           <div className="absolute flex items-center justify-center">
             <Avatar canAnimate={true} />
             {/* <img src="/avatar.png" alt="Avatar" width={384} height={384} className="object-cover rounded-full overflow-hidden border-8 border-black" /> */}

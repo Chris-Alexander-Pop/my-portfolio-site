@@ -12,7 +12,7 @@ const LineAnimation: React.FC<{}> = () => {
 
     const lines = Array.from({ length: 6 });
     const icons = [
-        '/Icons/React.svg',
+        '/getupgraded-logo.png',
         '/Icons/React.svg',
         '/Icons/React.svg',
         '/Icons/React.svg',
