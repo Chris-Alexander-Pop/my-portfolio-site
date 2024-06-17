@@ -24,74 +24,76 @@ const Header: React.FC<{}> = () => {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         {/* Left Icons */}
         <div style={{ display: 'flex', alignItems: 'center' }}>
-        <Link href="/" passHref>
-          <div
-          onMouseEnter={() => onlyHomeTrue()}
-          style={{ marginRight: 15, marginLeft: 12, transform: isHomeHovered ? 'scale(1.2) translate(-2%, +2%)' : 'scale(1)' }}
-          >
-            <RiHome2Line size={30} style={{ marginRight: 0, marginLeft: 15 }} />
-          </div>
-        </Link>
-
-        {isClient &&
-          <SocialIcon
-            target="_blank"
-            url="https://www.linkedin.com/in/chris-pop-598b06255/"
-            bgColor="#ffffff"
-            fgColor="#000000"
-            style={{ marginRight: 5 }}
-          /> &&
-          <SocialIcon
-            target="_blank"
-            url="https://github.com/Chris-Alexander-Pop/"
-            bgColor="#ffffff"
-            fgColor="#000000"
-            style={{ marginRight: 5 }}
-          /> &&
-          <SocialIcon
-            target="_blank"
-            network="email"
-            url="mailto:chrisalexanderpop@gmail.com"
-            bgColor="#ffffff"
-            fgColor="#000000"
-          />
-        }
-
-        <div onClick={() => {}} style={{ cursor: 'pointer' }}>
-          <Link href="https://ece.engineering/" target="_blank" passHref>
-            <LiaNetworkWiredSolid size={30} style={{ marginRight: 25, marginLeft: 12 }} />
+          <Link href="/" passHref>
+            <div
+            onMouseEnter={() => onlyHomeTrue()}
+            style={{ marginRight: 15, marginLeft: 12, transform: isHomeHovered ? 'scale(1.2) translate(-2%, +2%)' : 'scale(1)' }}
+            >
+              <RiHome2Line size={30} style={{ marginRight: 0, marginLeft: 15 }} />
+            </div>
           </Link>
-        </div>
+
+          {isClient &&
+          <div>
+              <SocialIcon
+                target="_blank"
+                url="https://www.linkedin.com/in/chris-pop-598b06255/"
+                bgColor="#ffffff"
+                fgColor="#000000"
+                style={{ marginRight: 5 }}
+              />
+              <SocialIcon
+                target="_blank"
+                url="https://github.com/Chris-Alexander-Pop/"
+                bgColor="#ffffff"
+                fgColor="#000000"
+                style={{ marginRight: 5 }}
+              />
+              <SocialIcon
+                target="_blank"
+                network="email"
+                url="mailto:chrisalexanderpop@gmail.com"
+                bgColor="#ffffff"
+                fgColor="#000000"
+              />
+            </div>
+          }
+
+          <div onClick={() => {}} style={{ cursor: 'pointer' }}>
+            <Link href="https://ece.engineering/" target="_blank" passHref>
+              <LiaNetworkWiredSolid size={30} style={{ marginRight: 25, marginLeft: 12 }} />
+            </Link>
+          </div>
         </div>
 
         {/* Right Icons */}
         <div style={{ display: 'flex', alignItems: 'center' }}>
-        <Link href="/about" passHref>
-          <div
-            onMouseEnter={() => onlyAboutTrue()}
-            style={{ marginRight: 12, marginLeft: 12, transform: isAboutHovered ? 'scale(1.2)' : 'scale(1)' }}
-          >
-            <BsPerson size={32} />
-          </div>
-        </Link>
+          <Link href="/about" passHref>
+            <div
+              onMouseEnter={() => onlyAboutTrue()}
+              style={{ marginRight: 12, marginLeft: 12, transform: isAboutHovered ? 'scale(1.2)' : 'scale(1)' }}
+            >
+              <BsPerson size={32} />
+            </div>
+          </Link>
 
-        <Link href="/resume" passHref>
-          <div
-            onMouseEnter={() => onlyResumeTrue()}
-            style={{ marginRight: 15, marginLeft: 12, transform: isResumeHovered ? 'scale(1.2)' : 'scale(1)' }}
-          >
-            <IoDocumentTextOutline size={30} />
-          </div>
-        </Link>
+          <Link href="/resume" passHref>
+            <div
+              onMouseEnter={() => onlyResumeTrue()}
+              style={{ marginRight: 15, marginLeft: 12, transform: isResumeHovered ? 'scale(1.2)' : 'scale(1)' }}
+            >
+              <IoDocumentTextOutline size={30} />
+            </div>
+          </Link>
 
-        <Link href="/portfolio" passHref>
-          <div
-            onMouseEnter={() => onlyPortfolioTrue()}
-            style={{ marginRight: 25, marginLeft: 12, transform: isPortfolioHovered ? 'scale(1.2)' : 'scale(1)' }}
-          >
-            <GrProjects size={25} />
-          </div>
-        </Link>
+          <Link href="/portfolio" passHref>
+            <div
+              onMouseEnter={() => onlyPortfolioTrue()}
+              style={{ marginRight: 25, marginLeft: 12, transform: isPortfolioHovered ? 'scale(1.2)' : 'scale(1)' }}
+            >
+              <GrProjects size={25} />
+            </div>
+          </Link>
         </div>
       </div>
     </header>
