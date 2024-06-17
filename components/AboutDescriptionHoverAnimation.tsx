@@ -1,16 +1,27 @@
 'use client'
 import React, { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
-import { GetHoverStates } from '@/lib/helpers.js';
+import { GetHoverStates } from '@/lib/helpers';
 import AboutDescription from "@/components/AboutDescription";
 import { ScrollWheel } from '@/components/AboutTechStack';
 
 
+/**
+ * AboutDescriptionHoverAnimation component
+ * This component is responsible for animating the description of the about page
+ * when the user hovers over the about tab.
+ */
 const AboutDescriptionHoverAnimation: React.FC<{}> = () => {
+    // Get the hover states of the different tabs
     const { isAboutHovered, isPortfolioHovered, isResumeHovered } = GetHoverStates();
+    // Animation controls for the path and the description
     const controls = useAnimation();
     const aboutDescriptionAnimation = useAnimation();
 
+    /**
+     * Effect hook to handle the animation when the user hovers over the about tab.
+     * It starts the animation of the path and the description.
+     */
     useEffect(() => {
         if (isAboutHovered) {
             aboutDescriptionAnimation.start({
@@ -33,13 +44,16 @@ const AboutDescriptionHoverAnimation: React.FC<{}> = () => {
     }, [isAboutHovered, controls, aboutDescriptionAnimation]);
 
     return (
+        // Container for the svg and the description
         <div className="relative flex justify-center">
+            {/* If the user is not hovering over the portfolio or resume tabs, show the svg */}
             {!isPortfolioHovered && !isResumeHovered && 
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 200 200"
                     className="w-96 h-96"
                 >
+                    {/* Motion path that animates when the user hovers over the about tab */}
                     <motion.path
                         fill="none"
                         stroke="black"
@@ -53,12 +67,15 @@ const AboutDescriptionHoverAnimation: React.FC<{}> = () => {
                     />
                 </svg>
             }
+            {/* Motion div that contains the description and the scroll wheel */}
             <motion.div
                 className="absolute"
                 animate={aboutDescriptionAnimation}
                 initial={{ opacity: 0 }}
             >
+                {/* Description of the about page */}
                 <AboutDescription />
+                {/* Scroll wheel component */}
                 <ScrollWheel />
             </motion.div>
         </div>
