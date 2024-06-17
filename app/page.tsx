@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 const Home: React.FC = () => {
 
   return (
-    <HomePage/>
+      <HomePage/>
   );
 };
 
