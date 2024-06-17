@@ -11,7 +11,7 @@ import { GrProjects } from 'react-icons/gr';
 import { BsPerson } from 'react-icons/bs';
 import { LiaNetworkWiredSolid } from "react-icons/lia";
 
-const Header: React.FC<{}> = () => {
+const Header: React.FC<{isHome: boolean}> = ({isHome = false}) => {
   const { isHomeHovered, isAboutHovered, isResumeHovered, isPortfolioHovered, setIsHomeHovered, setIsAboutHovered, setIsResumeHovered, setIsPortfolioHovered, onlyHomeTrue, onlyAboutTrue, onlyResumeTrue, onlyPortfolioTrue } = GetHoverStates();
   const [isClient, setIsClient] = useState(false);
 
@@ -27,6 +27,7 @@ const Header: React.FC<{}> = () => {
           <Link href="/" passHref>
             <div
             onMouseEnter={() => onlyHomeTrue()}
+            onMouseLeave={() => setIsHomeHovered(isHome)}
             style={{ marginRight: 15, marginLeft: 12, transform: isHomeHovered ? 'scale(1.2) translate(-2%, +2%)' : 'scale(1)' }}
             >
               <RiHome2Line size={30} style={{ marginRight: 0, marginLeft: 15 }} />
@@ -71,6 +72,7 @@ const Header: React.FC<{}> = () => {
           <Link href="/about" passHref>
             <div
               onMouseEnter={() => onlyAboutTrue()}
+              onMouseLeave={() => setIsAboutHovered(isHome)}
               style={{ marginRight: 12, marginLeft: 12, transform: isAboutHovered ? 'scale(1.2)' : 'scale(1)' }}
             >
               <BsPerson size={32} />
@@ -80,6 +82,7 @@ const Header: React.FC<{}> = () => {
           <Link href="/resume" passHref>
             <div
               onMouseEnter={() => onlyResumeTrue()}
+              onMouseLeave={() => setIsResumeHovered(isHome)}
               style={{ marginRight: 15, marginLeft: 12, transform: isResumeHovered ? 'scale(1.2)' : 'scale(1)' }}
             >
               <IoDocumentTextOutline size={30} />
@@ -89,6 +92,7 @@ const Header: React.FC<{}> = () => {
           <Link href="/portfolio" passHref>
             <div
               onMouseEnter={() => onlyPortfolioTrue()}
+              onMouseLeave={() => setIsPortfolioHovered(isHome)}
               style={{ marginRight: 25, marginLeft: 12, transform: isPortfolioHovered ? 'scale(1.2)' : 'scale(1)' }}
             >
               <GrProjects size={25} />

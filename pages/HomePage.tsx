@@ -1,5 +1,6 @@
 'use client'
-import React from "react";
+
+import React, { useEffect } from "react";
 import Header from "@/components/Header";
 import Avatar from "@/components/Avatar";
 import AboutDescriptionHoverAnimation from "@/components/AboutDescriptionHoverAnimation";
@@ -25,7 +26,7 @@ const HomePage: React.FC = () => {
     },
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     controls.set("initial");
     controls.start("visible");
   }, [controls]);
@@ -34,25 +35,21 @@ const HomePage: React.FC = () => {
     <HoverProvider>
       <motion.div layout animate={controls} variants={variants}>
         <div className="sticky top-0 z-50">
-          <Header />
+          <Header isHome = {true}/>
         </div>
         <div className="relative flex items-center justify-center h-90vh overflow-hidden bottom-12">
           <div className="absolute flex items-center justify-center">
             <Avatar canAnimate={true} />
-            {/* <img src="/avatar.png" alt="Avatar" width={384} height={384} className="object-cover rounded-full overflow-hidden border-8 border-black" /> */}
           </div>
           <div className="-z-50">
             <LineAnimation />
           </div>
           <div className="absolute ml-88">
             <AboutDescriptionHoverAnimation />
-            {/* <TechnologyDropdown />
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" className="w-96 h-96"></svg> */}
           </div>
           <PortfolioAnimationLeft />
           <PortfolioAnimationRight />
         </div>
-        {/* <ScrollWheel /> */}
       </motion.div>
     </HoverProvider>
   );
