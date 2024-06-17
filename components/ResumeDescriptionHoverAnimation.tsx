@@ -2,7 +2,7 @@
 
 import { motion, useAnimation } from 'framer-motion';
 import React, { useEffect } from 'react';
-import { GetHoverStates } from './Header';
+import { GetHoverStates } from '@/lib/helpers.js';
 import Image from 'next/image';
 
 const LineAnimation: React.FC<{}> = () => {

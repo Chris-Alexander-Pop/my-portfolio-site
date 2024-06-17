@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
-import { GetHoverStates } from '@/components/Header';
+import { GetHoverStates } from '@/lib/helpers.js';
 import AboutDescription from "@/components/AboutDescription";
 import { ScrollWheel } from '@/components/AboutTechStack';
 

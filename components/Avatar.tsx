@@ -1,6 +1,6 @@
 'use client'
 import { motion } from 'framer-motion';
-import { GetHoverStates } from './Header';
+import { GetHoverStates } from '@/lib/helpers.js';
 import Image from 'next/image';
 import React from 'react';
 

@@ -1,16 +1,16 @@
-// Home.tsx
 import React from "react";
-import Head from "next/head";
-import Header from "../../components/Header";
+import ResumePage from "@/pages/ResumePage";
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Chris Pop'
+}
 
 const Home: React.FC = () => {
+
   return (
-    <div>
-      <Head>
-        <title>Chris Pop</title>
-      </Head>
-      <Header />
-    </div>
+    <ResumePage/>
   );
 };
+
 export default Home;
