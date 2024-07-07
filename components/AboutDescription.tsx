@@ -9,18 +9,14 @@ import React from "react";
 const AboutDescription: React.FC<{}> = (): JSX.Element => {
     return(
         <div>
-            {/* The paragraph element contains the author's description */}
-            <p className="text-black"> 
-                {/* The author's introduction */}
-                Hello, my name is Chris and I am a 2nd year Computer Engineering student at the University of Waterloo.
-                {/* The author's current work */}
-                I am currently working as a Full Stack Developer at Upgraded, and in my spare time I am developing
-                a peer to peer microlending platform with a goal to facilitate non-profit loans and donations for people
-                in need.
-                {/* Instructions for further information */}
-                Feel free to check out my resume or portfolio for more detail on my experience, and for any
-                inquiries please e-mail chrisalexanderpop@gmail.com or use the e-mail button above.
-            </p>
+            <p className="text-black"> Hello, my name is Chris and I am a 2nd year Computer Engineering student at the University of Waterloo. </p>
+            <br/>
+            <ul className="text-black list-disc pl-5">
+                <li>I am currently working as a Software Engineering Intern at Upgraded, a company which helps startups find working capital.</li>
+                <li>In addition, I am leading a project in developing a carpooling platform built around students with an emphasis on sustainability and affordability.</li>
+            </ul>
+            <br/>
+            <p className="text-black"> Feel free to check out my resume or portfolio for more detail on my experience, and for any inquiries please reach out via LinkedIn or e-mail at chrisalexanderpop@gmail.com. </p>
         </div>
     );
 };

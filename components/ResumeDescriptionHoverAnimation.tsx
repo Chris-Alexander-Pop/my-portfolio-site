@@ -19,17 +19,10 @@ const LineAnimation: React.FC<{}> = () => {
     const aboutResumeAnimation = useAnimation();
 
     // Create an array of length 6 to represent the 6 lines
-    const lines = Array.from({ length: 6 });
+    const lines = Array.from({ length: 1 });
     // Array of icons to display next to each line
     const icons = [
         '/getupgraded-logo.png',
-        '/Icons/React.svg',
-        '/Icons/React.svg',
-        '/Icons/React.svg',
-        '/Icons/React.svg',
-        '/Icons/React.svg',
-        '/Icons/React.svg',
-        '/Icons/React.svg',
     ];
 
     return (
@@ -52,12 +45,12 @@ const LineAnimation: React.FC<{}> = () => {
                         {/* If the user is hovering over the resume tab, display an icon next to each line */}
                         {isResumeHovered &&
                             <motion.div 
-                            className="relative w-24 h-24"
-                            // Set the initial and animate values for the icon based on whether the user is hovering over the resume tab
-                            initial={{ scale: 0 }}
-                            animate={isResumeHovered ? { scale: 1, opacity: 1 } : { scale: 0, opacity: -2 }}
-                            // Set the transition values for the icon
-                            transition={{ duration: 0.1, delay: index * 0.15 }}
+                                className="relative w-24 h-24"
+                                // Set the initial and animate values for the icon based on whether the user is hovering over the resume tab
+                                initial={{ scale: 0 }}
+                                animate={isResumeHovered ? { scale: 1, opacity: 1 } : { scale: 0, opacity: -2 }}
+                                // Set the transition values for the icon
+                                transition={{ duration: 0.1, delay: index * 0.15 }}
                             >
                                 <Image
                                     src={icons[index]}

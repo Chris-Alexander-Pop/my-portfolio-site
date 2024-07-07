@@ -13,12 +13,14 @@
     "next": "14.2.3",
     "react-dom": "^19.0.0-beta-b498834eab-20240506",
     "react-icons": "^5.2.0",
-    "react-social-icons": "^6.16.0"
+    "react-social-icons": "^6.16.0",
+    "three": "^0.166.1"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/three": "^0.166.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
     "postcss": "^8",
