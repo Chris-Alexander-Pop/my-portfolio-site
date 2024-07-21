@@ -66,7 +66,7 @@ const Header: React.FC<{isHome: boolean}> = ({isHome = false}) => {
               {/* LinkedIn icon */}
               <SocialIcon
                 target="_blank"
-                url="https://www.linkedin.com/in/chris-pop-598b06255/"
+                url="https://www.linkedin.com/in/chris-a-pop/"
                 bgColor="#ffffff"
                 fgColor="#000000"
                 style={{ marginRight: 5 }}

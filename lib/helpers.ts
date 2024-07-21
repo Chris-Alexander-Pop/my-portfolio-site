@@ -18,6 +18,7 @@ interface HoverStateObject {
     onlyAboutTrue: () => void;
     onlyResumeTrue: () => void;
     onlyPortfolioTrue: () => void;
+    getLastHovered: () => string | null;
 }
 
 /**
@@ -61,6 +62,8 @@ export const GetHoverStates = (): HoverStateObject => {
         removeOtherHovers: onlyPortfolioTrue,
     } = useHover('portfolio');
 
+    const {getLastHovered: getLastHovered} = useHover('');
+
     // Return an object containing the hover states and corresponding functions
     // for each section.
     return {
@@ -76,5 +79,16 @@ export const GetHoverStates = (): HoverStateObject => {
         onlyAboutTrue,
         onlyResumeTrue,
         onlyPortfolioTrue,
+        getLastHovered
     };
 };
+
+export const getPrimaryStack = () => {
+    return ["./Icons/TypeScript.svg", "./Icons/Kotlin.svg", "./Icons/CPlusPlus.svg", "./Icons/Python.svg", "./Icons/React.svg", "./Icons/Next.js.svg", "./Icons/Node.js.svg"];
+}
+
+export const getSecondaryStack = () => {
+    return ["./Icons/AndroidStudio.svg", "./Icons/AndroidStudio.svg", "./Icons/AndroidStudio.svg", "./Icons/AndroidStudio.svg"];
+}
+
+

@@ -4,6 +4,7 @@ import { motion, useAnimation } from 'framer-motion';
 import { GetHoverStates } from '@/lib/helpers';
 import AboutDescription from "@/components/AboutDescription";
 import { ScrollWheel } from '@/components/AboutTechStack';
+import { useAnimationLock } from '@/contexts/useAnimationLock';
 
 
 /**
@@ -13,10 +14,19 @@ import { ScrollWheel } from '@/components/AboutTechStack';
  */
 const AboutDescriptionHoverAnimation: React.FC<{}> = () => {
     // Get the hover states of the different tabs
-    const { isAboutHovered, isPortfolioHovered, isResumeHovered } = GetHoverStates();
+    const { isAboutHovered, isPortfolioHovered, isResumeHovered, getLastHovered } = GetHoverStates();
     // Animation controls for the path and the description
     const controls = useAnimation();
     const aboutDescriptionAnimation = useAnimation();
+    const { variables, getVariable, setVariable } = useAnimationLock();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const avatarVariants = {
+        resting: { scale: 1, rotate: 0, opacity: 1, x: 0, y: 0, transition: {duration: 1, x: { bounce: 0 }, bounce: 0 } },
+        aboutAnimation: { scale: 1, rotate: 0, opacity: 1, x: 60, transition: { duration: 0.3, delay: 0.3, x: { bounce: 0 }, bounce: 0 } },
+        resumeAnimation: { scale: 0.8, rotate: 0, opacity: 1, x: -35, transition: { duration: 0.3, x: { bounce: 0 }, bounce: 0 } },
+        portfolioAnimation: { scale: 1, rotate: 0, opacity: 0, y: 1500, transition: { duration: 2, y: { bounce: 0 }, bounce: 0 } },
+      };
 
     /**
      * Effect hook to handle the animation when the user hovers over the about tab.
@@ -24,61 +34,76 @@ const AboutDescriptionHoverAnimation: React.FC<{}> = () => {
      */
     useEffect(() => {
         if (isAboutHovered) {
-            aboutDescriptionAnimation.start({
-                opacity: 1,
-                scale: 1,
-                transition: { delay: 0.3 },
-                x:60
-              });
+            aboutDescriptionAnimation.start(avatarVariants['aboutAnimation']);
             controls.start({
                 d: "M2,192 A64,0 0 1,1 198,192",
-                transition: { duration: 0.5 }
+                transition: { duration: 0.3 }
             });
         } else {
-            aboutDescriptionAnimation.start({ opacity: 0, scale: 0, x:0, transition: {duration: 0} });
+            aboutDescriptionAnimation.start({ opacity: 0, scale: 0, x:0, transition: { duration: 0, bounce: 0, x: { bounce: 0 } } });
             controls.start({
                 d: "M2,192 A64,64 0 1,1 198,192",
-                transition: { duration: 0.1 }
+                transition: { duration: 0.3 }
             });
         }
-    }, [isAboutHovered, controls, aboutDescriptionAnimation]);
+    }, [isAboutHovered, controls, aboutDescriptionAnimation, avatarVariants]);
 
     return (
-        // Container for the svg and the description
-        <div className="relative flex justify-center">
-            {/* If the user is not hovering over the portfolio or resume tabs, show the svg */}
-            {!isPortfolioHovered && !isResumeHovered && 
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 200 200"
-                    className="w-96 h-96"
-                >
-                    {/* Motion path that animates when the user hovers over the about tab */}
-                    <motion.path
-                        fill="none"
-                        stroke="black"
-                        strokeWidth="4"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M2,192 A64,64 0 1,1 198,192"
-                        initial={false}
-                        animate={controls}
-                        transform="rotate(90 100 100)"
-                    />
-                </svg>
+        <motion.div 
+        initial="resting"
+            // Set the animation variant based on the hover state
+            animate={
+                isResumeHovered
+                        ? 'resumeAnimation'
+                        : (isPortfolioHovered || (!isPortfolioHovered && getVariable('PortfolioAnimationState') && !isAboutHovered && !isResumeHovered && getLastHovered() === 'portfolio'))
+                        ? 'portfolioAnimation'
+                        : 'resting'
             }
-            {/* Motion div that contains the description and the scroll wheel */}
-            <motion.div
-                className="absolute"
-                animate={aboutDescriptionAnimation}
-                initial={{ opacity: 0 }}
-            >
-                {/* Description of the about page */}
-                <AboutDescription />
-                {/* Scroll wheel component */}
-                <ScrollWheel />
-            </motion.div>
-        </div>
+            variants={avatarVariants}
+            onAnimationStart={() => {setVariable('AboutDescriptionAnimationState', true)}}
+            onAnimationComplete={() => {setVariable('AboutDescriptionAnimationState', false)}}
+        >
+
+            <div className="relative flex justify-center">
+                <div className="relative">
+                    {/* If the user is not hovering over the portfolio tabs, show the svg */}
+                    {!isPortfolioHovered && 
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 200 200"
+                            className="w-96 h-96 relative"
+                        >
+                            {/* Motion path that animates when the user hovers over the about tab */}
+                            <motion.path
+                                fill="none"
+                                stroke="black"
+                                strokeWidth="4"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M2,192 A64,64 0 1,1 198,192"
+                                initial={false}
+                                animate={controls}
+                                transform="rotate(90 100 100)"
+                            />
+                        </svg>
+                    }
+                    {/* Add more content here, fix the positioning though */}
+                </div>
+                {/* Motion div that contains the description and the scroll wheel */}
+                {isAboutHovered && 
+                    <motion.div
+                        className="absolute"
+                        animate={aboutDescriptionAnimation}
+                        initial={{ opacity: 0 }}
+                    >
+                        {/* Description of the about page */}
+                        <AboutDescription />
+                        {/* Scroll wheel component */}
+                        {/* <ScrollWheel /> */}
+                    </motion.div>
+                }
+            </div>
+        </motion.div>
     );
 };
 

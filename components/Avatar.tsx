@@ -3,63 +3,58 @@ import { motion } from 'framer-motion';
 import { GetHoverStates } from '@/lib/helpers';
 import Image from 'next/image';
 import React from 'react';
+import { useAnimationLock } from '@/contexts/useAnimationLock';
 
 /**
- * Avatar component
- * This component displays the avatar of the user
- * The avatar animates when the user hovers over different tabs
- * @param {boolean} canAnimate - Determines whether animations are enabled
- * @returns {JSX.Element} The Avatar component
+ * Renders an animated avatar component that can be animated based on hover states.
+ *
+ * @param {Object} props - The component props.
+ * @param {boolean} props.canAnimate - Determines if the avatar should animate.
+ * @return {JSX.Element} The animated avatar component.
  */
 const Avatar: React.FC<{ canAnimate: boolean }> = ({ canAnimate }) => {
-    // Get the hover states of the different tabs
-    const { isAboutHovered, isResumeHovered, isPortfolioHovered } = GetHoverStates();
+  const { isAboutHovered, isResumeHovered, isPortfolioHovered, getLastHovered } = GetHoverStates();
+  const { variables, getVariable, setVariable } = useAnimationLock();
 
-    // Define the animation variants for the avatar
-    const avatarVariants = {
-        resting: { scale: 1, rotate: 0, opacity: 1, x: 0, transition: {duration: 0.3} },
-        aboutAnimation: { scale: 1, rotate: 0, opacity: 1, x: -350, transition: { duration: 0.3, ease: "easeInOut" } },
-        resumeAnimation: { scale: 0.8, rotate: 0, opacity: 1, transition: { duration: 0.3, ease: "easeOut" } },
-        portfolioAnimation: { scale: 0, rotate: 0, opacity: 1, transition: { duration: 1, ease: "easeIn" } },
-      };
+  const avatarVariants = {
+    resting: { scale: 1, rotate: 0, opacity: 1, x: 0, y: 0, transition: { duration: 1, x: { bounce: 0 }, bounce: 0 } },
+    aboutAnimation: { scale: 1, rotate: 0, opacity: 1, x: -350, transition: { duration: 0.3, x: { bounce: 0 }, bounce: 0 } },
+    resumeAnimation: { scale: 0.8, rotate: 0, opacity: 1, transition: { duration: 0.3, x: { bounce: 0 }, bounce: 0 } },
+    portfolioAnimation: { scale: 1, rotate: 0, opacity: 0, y: 1500, transition: { duration: 2, x: { bounce: 0 }, bounce: 0 } },
+  };
 
-    // If animations are disabled, set all animation variants to their resting state
-    if (!canAnimate) {
-        for (const key in avatarVariants) {
-            avatarVariants[key as keyof typeof avatarVariants] = { scale: 1, rotate: 0, opacity: 1, x: 0, transition: {duration: 0, ease: ""} };
-        }
-    }
-
-    return (
-        <motion.div
-            className="flex items-center justify-center"
-            initial="resting"
-            // Set the animation variant based on the hover state
-            animate={
-                canAnimate
-                    ? isAboutHovered
-                        ? 'aboutAnimation'
-                        : isResumeHovered
-                        ? 'resumeAnimation'
-                        : isPortfolioHovered
-                        ? 'portfolioAnimation'
-                        : 'resting'
-                    : 'resting'
-            }
-            variants={avatarVariants}
-        >
-            <div className="relative">
-                <Image 
-                    src="/avatar.png" 
-                    alt="Avatar" 
-                    width={384} 
-                    height={384} 
-                    priority={true} 
-                    className="object-cover rounded-full overflow-hidden border-8 border-black"
-                />
-            </div>
-        </motion.div>
-    );
+   
+  return (
+    <motion.div
+      className="flex items-center justify-center"
+      initial="resting"
+      animate={
+        canAnimate
+          ? isAboutHovered
+            ? 'aboutAnimation'
+            : isResumeHovered
+              ? 'resumeAnimation'
+              : (isPortfolioHovered || (!isPortfolioHovered && getVariable('PortfolioAnimationState') && !isAboutHovered && !isResumeHovered && getLastHovered() === 'portfolio'))
+                ? 'portfolioAnimation'
+                : 'resting'
+          : 'resting'
+      }
+      variants={avatarVariants}
+      onAnimationStart={() => {setVariable('AvatarAnimationState', true)}}
+      onAnimationComplete={() => {setVariable('AvatarAnimationState', false)}}
+    >
+      <div className="relative">
+        <Image 
+          src="/avatar.png" 
+          alt="Avatar" 
+          width={384} 
+          height={384} 
+          priority={true} 
+          className="object-cover rounded-full overflow-hidden border-8 border-black"
+        />
+      </div>
+    </motion.div>
+  );
 };
 
 export default Avatar;

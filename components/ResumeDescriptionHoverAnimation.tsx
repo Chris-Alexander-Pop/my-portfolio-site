@@ -4,60 +4,56 @@ import { motion, useAnimation } from 'framer-motion';
 import React, { useEffect } from 'react';
 import { GetHoverStates } from '@/lib/helpers';
 import Image from 'next/image';
+import { useAnimationLock } from '@/contexts/useAnimationLock';
+
 
 /**
- * LineAnimation component
- * This component displays a set of lines that animate when the user hovers over the resume tab.
- * Each line is represented by a motion div that rotates and scales based on the index.
- * If the user is hovering over the resume tab, the lines are scaled and an icon is displayed next to each line.
+ * Renders a tech skills animation based on hover states and interval updates.
+ *
+ * @return {ReactElement} The rendered tech skills animation component.
  */
-const LineAnimation: React.FC<{}> = () => {
-    // Get the hover states of the different tabs
+const TechSkillsAnimation: React.FC<{distance: string, direction: string, stack: Array<string>}> = ({distance, direction, stack}) => {
+    console.log(`absolute w-1 h-[${distance ?? '50'}rem] bg-transparent opacity-0`);
     const { isAboutHovered, isPortfolioHovered, isResumeHovered } = GetHoverStates();
-    // Animation controls for the lines and the icons
-    const controls = useAnimation();
-    const aboutResumeAnimation = useAnimation();
+    const { variables, getVariable, setVariable } = useAnimationLock();
 
-    // Create an array of length 6 to represent the 6 lines
-    const lines = Array.from({ length: 1 });
-    // Array of icons to display next to each line
-    const icons = [
-        '/getupgraded-logo.png',
-    ];
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            const currentAngleModifier = getVariable('angleModifier') ?? 0;
+            setVariable('angleModifier', currentAngleModifier + 0.1);
+        }, 10);
+
+        return () => clearInterval(intervalId);
+    }, [getVariable, setVariable]);
 
     return (
         <div className="relative w-full h-full flex items-center justify-center">
-            {/* Map over the lines array to create a motion div for each line */}
-            {lines.map((_, index) => {
-                // Calculate the angle of rotation for each line based on the index
-                const angle = (360 / lines.length) * index;
+            {stack.map((_, index) => {
+                const angle = (360 / stack.length) * index + (getVariable('angleModifier') ?? 0) * (direction === 'ccw' ? -1 : 1);
+                
                 return (
                     <motion.div
                         key={index}
-                        // Set the initial and animate values for the line based on whether the user is hovering over the resume tab
                         initial={{ scaleX: 0 }}
                         animate={isResumeHovered ? { scaleX: 1, opacity: 1 } : { scaleX: 0, opacity: 0 }}
-                        // Set the transition values for the line
                         transition={{ duration: 0.9, delay: index * 0.05 }}
-                        className="absolute w-1 h-120 bg-black"
-                        style={{ rotate: `${angle}deg` }}
+                        className="absolute w-1 bg-transparent opacity-0"
+                        style={{ height: `${distance ?? '40'}rem`, rotate: `${angle}deg` }}
                     >
-                        {/* If the user is hovering over the resume tab, display an icon next to each line */}
                         {isResumeHovered &&
                             <motion.div 
                                 className="relative w-24 h-24"
-                                // Set the initial and animate values for the icon based on whether the user is hovering over the resume tab
                                 initial={{ scale: 0 }}
-                                animate={isResumeHovered ? { scale: 1, opacity: 1 } : { scale: 0, opacity: -2 }}
-                                // Set the transition values for the icon
+                                animate={isResumeHovered ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
                                 transition={{ duration: 0.1, delay: index * 0.15 }}
                             >
                                 <Image
-                                    src={icons[index]}
+                                    src={stack[index]}
                                     alt={`Icon ${index}`}
                                     layout="fill"
                                     objectFit="contain"
-                                    className="absolute top-0 left-0 transform translate-y-[-100%] translate-x-[-50%]"
+                                    className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                                    style={{ transform: `rotate(${-angle}deg)` }}
                                 />
                             </motion.div>
                         }
@@ -68,4 +64,4 @@ const LineAnimation: React.FC<{}> = () => {
     );
 };
 
-export default LineAnimation;
+export default TechSkillsAnimation;

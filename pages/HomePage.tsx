@@ -4,11 +4,13 @@ import React, { useEffect } from "react";
 import Header from "@/components/Header";
 import Avatar from "@/components/Avatar";
 import AboutDescriptionHoverAnimation from "@/components/AboutDescriptionHoverAnimation";
-import LineAnimation from "@/components/ResumeDescriptionHoverAnimation";
+import TechSkillsAnimation from "@/components/ResumeDescriptionHoverAnimation";
 import { PortfolioAnimationLeft, PortfolioAnimationRight } from "@/components/PortfolioDescriptHoverAnimation";
 import { HoverProvider } from "@/contexts/HoverContext";
 import { motion, useAnimation } from "framer-motion";
 import BackgroundAnimation from "@/components/BackgroundAnimation";
+import { AnimationLockProvider } from "@/contexts/useAnimationLock";
+import { getPrimaryStack, getSecondaryStack } from "@/lib/helpers";
 
 /**
  * HomePage component is the main page of the website.
@@ -48,31 +50,36 @@ const HomePage: React.FC = () => {
     <div className="relative h-screen">
       <BackgroundAnimation />
       <HoverProvider>
-        {/* Animate the page using the Framer Motion library */}
-        <motion.div layout animate={controls} variants={variants}>
-          {/* Render the Header component with the isHome prop set to true */}
-          <div className="sticky top-0 z-50">
-            <Header isHome = {true}/>
-          </div>
-          {/* Render the main content of the page */}
-          <div className="relative flex items-center justify-center h-90vh overflow-hidden bottom-12">
-            <div className="absolute flex items-center justify-center">
-              {/* Render the Avatar component with the canAnimate prop set to true */}
-              <Avatar canAnimate={true} />
+        <AnimationLockProvider>
+          {/* Animate the page using the Framer Motion library */}
+          <motion.div layout animate={controls} variants={variants}>
+            {/* Render the Header component with the isHome prop set to true */}
+            <div className="sticky top-0 z-50">
+              <Header isHome = {true}/>
             </div>
-            <div className="-z-50">
-              {/* Render the LineAnimation component */}
-              <LineAnimation />
+            {/* Render the main content of the page */}
+            <div className="relative flex items-center justify-center h-90vh overflow-hidden bottom-12">
+              <div className="absolute flex items-center justify-center z-40">
+                {/* Render the Avatar component with the canAnimate prop set to true */}
+                <Avatar canAnimate={true} />
+              </div>
+
+              <div className="absolute flex items-center justify-center z-10">
+                
+                <TechSkillsAnimation distance={"40"} direction={"cw"} stack={getPrimaryStack()} />
+                {/* <TechSkillsAnimation distance={"50"} direction={"ccw"} stack={getSecondaryStack()} /> */}
+              </div>
+              
+              <div className="absolute ml-88 z-40">
+                {/* Render the AboutDescriptionHoverAnimation component */}
+                <AboutDescriptionHoverAnimation />
+              </div>
+              {/* Render the PortfolioAnimationLeft and PortfolioAnimationRight components */}
+              <PortfolioAnimationLeft />
+              <PortfolioAnimationRight />
             </div>
-            <div className="absolute ml-88">
-              {/* Render the AboutDescriptionHoverAnimation component */}
-              <AboutDescriptionHoverAnimation />
-            </div>
-            {/* Render the PortfolioAnimationLeft and PortfolioAnimationRight components */}
-            <PortfolioAnimationLeft />
-            <PortfolioAnimationRight />
-          </div>
-        </motion.div>
+          </motion.div>
+        </AnimationLockProvider>
       </HoverProvider>
     </div>
   );
