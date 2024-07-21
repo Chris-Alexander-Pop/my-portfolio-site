@@ -13,7 +13,6 @@ import { useAnimationLock } from '@/contexts/useAnimationLock';
  * @return {ReactElement} The rendered tech skills animation component.
  */
 const TechSkillsAnimation: React.FC<{distance: string, direction: string, stack: Array<string>, speed: number}> = ({distance, direction, stack, speed = 1}) => {
-    console.log(`absolute w-1 h-[${distance ?? '50'}rem] bg-transparent opacity-0`);
     const { isAboutHovered, isPortfolioHovered, isResumeHovered } = GetHoverStates();
     const { variables, getVariable, setVariable } = useAnimationLock();
 
