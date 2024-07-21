@@ -12,7 +12,7 @@ import { useAnimationLock } from '@/contexts/useAnimationLock';
  *
  * @return {ReactElement} The rendered tech skills animation component.
  */
-const TechSkillsAnimation: React.FC<{distance: string, direction: string, stack: Array<string>}> = ({distance, direction, stack}) => {
+const TechSkillsAnimation: React.FC<{distance: string, direction: string, stack: Array<string>, speed: number}> = ({distance, direction, stack, speed = 1}) => {
     console.log(`absolute w-1 h-[${distance ?? '50'}rem] bg-transparent opacity-0`);
     const { isAboutHovered, isPortfolioHovered, isResumeHovered } = GetHoverStates();
     const { variables, getVariable, setVariable } = useAnimationLock();
@@ -20,11 +20,11 @@ const TechSkillsAnimation: React.FC<{distance: string, direction: string, stack:
     useEffect(() => {
         const intervalId = setInterval(() => {
             const currentAngleModifier = getVariable('angleModifier') ?? 0;
-            setVariable('angleModifier', currentAngleModifier + 0.1);
+            setVariable('angleModifier', currentAngleModifier + 0.1 * speed);
         }, 10);
 
         return () => clearInterval(intervalId);
-    }, [getVariable, setVariable]);
+    }, [getVariable, setVariable, speed]);
 
     return (
         <div className="relative w-full h-full flex items-center justify-center">
@@ -42,7 +42,7 @@ const TechSkillsAnimation: React.FC<{distance: string, direction: string, stack:
                     >
                         {isResumeHovered &&
                             <motion.div 
-                                className="relative w-24 h-24"
+                                className="relative w-16 h-16"
                                 initial={{ scale: 0 }}
                                 animate={isResumeHovered ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
                                 transition={{ duration: 0.1, delay: index * 0.15 }}

@@ -84,11 +84,29 @@ export const GetHoverStates = (): HoverStateObject => {
 };
 
 export const getPrimaryStack = () => {
-    return ["./Icons/TypeScript.svg", "./Icons/Kotlin.svg", "./Icons/CPlusPlus.svg", "./Icons/Python.svg", "./Icons/React.svg", "./Icons/Next.js.svg", "./Icons/Node.js.svg"];
+    return ["./Icons/TypeScript.svg", "./Icons/Kotlin.svg", "./Icons/CPlusPlus.svg", "./Icons/Python.svg", "./Icons/React.svg", "./Icons/Next.js.svg", "./Icons/Node.js.svg", "./Icons/Svelte.svg"];
 }
 
 export const getSecondaryStack = () => {
-    return ["./Icons/AndroidStudio.svg", "./Icons/AndroidStudio.svg", "./Icons/AndroidStudio.svg", "./Icons/AndroidStudio.svg"];
+    return [
+        "./Icons/Amplify.svg",
+        "./Icons/AndroidStudio.svg",
+        "./Icons/AWS.svg",
+        "./Icons/GitHub.svg",
+        "./Icons/Heroku.svg",
+        "./Icons/Keystone.svg",
+        "./Icons/Ktor.svg",
+        "./Icons/Kubernetes.svg",
+        "./Icons/MongoDB.svg",
+        "./Icons/PostgresSQL.svg",
+        "./Icons/QLDB.svg",
+        "./Icons/S3Bucket.svg",
+        "./Icons/Supabase.svg",
+        "./Icons/TailwindCSS.svg",
+        "./Icons/Vercel.svg",
+        "./Icons/VSCode.svg"
+      ];
+      
 }
 
 

@@ -58,7 +58,7 @@ const HomePage: React.FC = () => {
               <Header isHome = {true}/>
             </div>
             {/* Render the main content of the page */}
-            <div className="relative flex items-center justify-center h-90vh overflow-hidden bottom-12">
+            <div className="relative flex items-center justify-center h-90vh overflow-hidden">
               <div className="absolute flex items-center justify-center z-40">
                 {/* Render the Avatar component with the canAnimate prop set to true */}
                 <Avatar canAnimate={true} />
@@ -66,8 +66,8 @@ const HomePage: React.FC = () => {
 
               <div className="absolute flex items-center justify-center z-10">
                 
-                <TechSkillsAnimation distance={"40"} direction={"cw"} stack={getPrimaryStack()} />
-                {/* <TechSkillsAnimation distance={"50"} direction={"ccw"} stack={getSecondaryStack()} /> */}
+                <TechSkillsAnimation distance={"40"} direction={"cw"} stack={getPrimaryStack()} speed={1}/>
+                <TechSkillsAnimation distance={"60"} direction={"ccw"} stack={getSecondaryStack()} speed={3}/>
               </div>
               
               <div className="absolute ml-88 z-40">
