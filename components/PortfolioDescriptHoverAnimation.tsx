@@ -25,7 +25,7 @@ export const PortfolioAnimationLeft: React.FC<{}> = () => {
         transition: { duration: 1, delay: 0.5 },
       });
     }
-  }, [isPortfolioHovered, controls, setVariable, isAboutHovered, isResumeHovered]);
+  }, [isPortfolioHovered, controls]);
 
   return (
     <AnimatePresence>
@@ -72,7 +72,7 @@ export const PortfolioAnimationRight: React.FC<{}> = () => {
         transition: { duration: 1, delay: 0.5 },
       });
     }
-  }, [isPortfolioHovered, controls, setVariable]);
+  }, [isPortfolioHovered, controls]);
 
   return (
     <AnimatePresence>

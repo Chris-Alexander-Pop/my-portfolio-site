@@ -32,7 +32,7 @@ const Avatar: React.FC<{ canAnimate: boolean }> = ({ canAnimate }) => {
         canAnimate
           ? isAboutHovered
             ? 'aboutAnimation'
-            : isResumeHovered
+            : (isResumeHovered || (!isResumeHovered && getVariable('ResumeAnimationState') && !isAboutHovered && !isPortfolioHovered && getLastHovered() === 'resume'))
               ? 'resumeAnimation'
               : (isPortfolioHovered || (!isPortfolioHovered && getVariable('PortfolioAnimationState') && !isAboutHovered && !isResumeHovered && getLastHovered() === 'portfolio'))
                 ? 'portfolioAnimation'

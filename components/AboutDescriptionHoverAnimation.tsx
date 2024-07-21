@@ -53,7 +53,7 @@ const AboutDescriptionHoverAnimation: React.FC<{}> = () => {
         initial="resting"
             // Set the animation variant based on the hover state
             animate={
-                isResumeHovered
+                (isResumeHovered || (!isResumeHovered && getVariable('ResumeAnimationState') && !isAboutHovered && !isPortfolioHovered && getLastHovered() === 'resume'))
                         ? 'resumeAnimation'
                         : (isPortfolioHovered || (!isPortfolioHovered && getVariable('PortfolioAnimationState') && !isAboutHovered && !isResumeHovered && getLastHovered() === 'portfolio'))
                         ? 'portfolioAnimation'

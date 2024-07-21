@@ -16,14 +16,33 @@ const TechSkillsAnimation: React.FC<{distance: string, direction: string, stack:
     const { isAboutHovered, isPortfolioHovered, isResumeHovered } = GetHoverStates();
     const { variables, getVariable, setVariable } = useAnimationLock();
 
+    const controls = useAnimation();
+
     useEffect(() => {
+
+        if (isResumeHovered) {
+            controls.start({
+                scaleX: 1,
+                opacity: 1,
+                transition: { duration: 0.5 },
+            });
+        } else {
+            controls.start({
+                scaleX: 0,
+                opacity: 0,
+                transition: { duration: 0.5 },
+            });
+        }
+
+
+
         const intervalId = setInterval(() => {
             const currentAngleModifier = getVariable('angleModifier') ?? 0;
             setVariable('angleModifier', currentAngleModifier + 0.1 * speed);
         }, 10);
 
         return () => clearInterval(intervalId);
-    }, [getVariable, setVariable, speed]);
+    }, [controls, getVariable, isResumeHovered, setVariable, speed]);
 
     return (
         <div className="relative w-full h-full flex items-center justify-center">
@@ -34,17 +53,21 @@ const TechSkillsAnimation: React.FC<{distance: string, direction: string, stack:
                     <motion.div
                         key={index}
                         initial={{ scaleX: 0 }}
-                        animate={isResumeHovered ? { scaleX: 1, opacity: 1 } : { scaleX: 0, opacity: 0 }}
+                        animate={controls}
                         transition={{ duration: 0.9, delay: index * 0.05 }}
                         className="absolute w-1 bg-transparent opacity-0"
                         style={{ height: `${distance ?? '40'}rem`, rotate: `${angle}deg` }}
+                        onAnimationStart={() => setVariable('ResumeAnimationState', true)}
+                        onAnimationComplete={() => setVariable('ResumeAnimationState', false)}
                     >
-                        {isResumeHovered &&
+                        {
                             <motion.div 
                                 className="relative w-16 h-16"
                                 initial={{ scale: 0 }}
                                 animate={isResumeHovered ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
                                 transition={{ duration: 0.1, delay: index * 0.15 }}
+                                onAnimationStart={() => setVariable('ResumeAnimationState', true)}
+                                onAnimationComplete={() => setVariable('ResumeAnimationState', false)}
                             >
                                 <Image
                                     src={stack[index]}
