@@ -126,7 +126,8 @@ const Header: React.FC<{isHome: boolean}> = ({isHome = false}) => {
           </Link>
 
           {/* Link to the portfolio page */}
-          <Link href="/portfolio" passHref>
+          {/* <Link href="/portfolio" passHref> */}
+          <Link href="/" passHref>
             <div
               onMouseEnter={() => onlyPortfolioTrue()}
               onMouseLeave={() => setIsPortfolioHovered(isHome)}

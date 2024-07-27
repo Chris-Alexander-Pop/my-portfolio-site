@@ -87,7 +87,7 @@ const HomePage: React.FC = () => {
                     "./Icons/VSCode.svg"
                   ]} speed={3}/>
                 <TechSkillsAnimation distance={"80"} direction={"cw"} stack={
-                  [
+                  [ 
                     "./Icons/Keystone.svg",
                     "./Icons/Ktor.svg",
                     "./Icons/Kubernetes.svg",

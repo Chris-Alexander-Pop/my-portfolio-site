@@ -140,4 +140,70 @@ export const getSecondaryStack = (alt: boolean) => {
     }
 }
 
+export interface BlogData {
+    name: string;
+    title: string;
+    date: string;
+    type: string;
+    paragraphs: string[];
+    stack?: string[];
+}
 
+// Define the type for your blog data collection
+export type BlogDataCollection = Record<string, BlogData>;
+
+export const Blogs = (slug: string, all = false): BlogData | BlogDataCollection => {
+    const data: BlogDataCollection = {
+        "Upgraded": {
+            name: "Upgraded",
+            title: "My Experience at Upgraded",
+            date: "May 2024 - Present",
+            paragraphs: ["/avatar.png", "content"],
+            type: "technical",
+            stack: ['/Icons/Next.js.svg',  '/Icons/React.svg',  '/Icons/JavaScript.svg',  '/Icons/TypeScript.svg',  '/Icons/Node.js.svg',  '/Icons/TailwindCSS.svg',  '/Icons/Selenium.svg',  '/Icons/Airtable.svg',  '/Icons/OpenAI.svg',  '/Icons/Stripe.svg',  '/Icons/Vercel.svg',  '/Icons/GitHub.svg']
+        },
+        "Vahana": {
+            name: "Vahana",
+            title: "My Development Journey in Vahana",
+            date: "May 2024 - August 2024",
+            paragraphs: ["content"],
+            type: "technical",
+            stack: ['/Icons/Next.js.svg', '/Icons/React.svg', '/Icons/TypeScript.svg', '/Icons/Kotlin.svg', '/Icons/Swift.svg', '/Icons/JetpackCompose.svg', '/Icons/AWS.svg', '/Icons/Amplify.svg', '/Icons/Stripe.svg', '/Icons/GitHub.svg']
+        },
+        "PortfolioWebsite": {
+            name: "Digital Portfolio",
+            title: "Developing my Digital Portfolio",
+            date: "April 2024 - July 2024",
+            paragraphs: ["content"],
+            type: "technical",
+            stack: ['/Icons/Next.js.svg', '/Icons/React.svg', '/Icons/TypeScript.svg', '/Icons/TailwindCSS.svg', '/Icons/FramerMotion.svg', '/Icons/Vercel.svg', '/Icons/GitHub.svg']
+        },
+        "PosturePal": {
+            name: "Posture Pal",
+            title: "ECE 198 Course Project: Posture Pal",
+            date: "September 2023 - December 2023",
+            paragraphs: ["content"],
+            type: "technical",
+            stack: ['/Icons/CPlusPlus.svg', '/Icons/STM32.svg', '/Icons/AutoCAD.svg', '/Icons/GitHub.svg']
+        },
+        "KnightsoftheCitadel": {
+            name: "Knight of the Citadel",
+            title: "ICS4U0 Course Project: Posture Pal",
+            date: "February 2023 - June 2023",
+            paragraphs: ["content"],
+            type: "technical",
+            stack: ['/Icons/Python.svg', '/Icons/GitHub.svg', '/Icons/VSCode.svg']
+        },
+        "BluetoothSmartCart": {
+            name: "Bluetooth Smart Cart",
+            title: "Engineering a Bluetooth Smart Cart",
+            date: "February 2022 - June 2022",
+            paragraphs: ["content"],
+            type: "technical",
+            stack: ['/Icons/CPlusPlus.svg', '/Icons/Arduino.svg', '/Icons/Python.svg']
+        },
+    };
+
+    // Return the data for the provided slug if specified, or a default message if the slug is not found
+    return (all ? data : (data[slug] || { name: "Not Found", title: "Not Found", date: "", paragraphs: ["No content available"], type: "" }));
+};
