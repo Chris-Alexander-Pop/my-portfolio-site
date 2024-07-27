@@ -20,12 +20,12 @@ const SocialIcon = dynamic(() => import('react-social-icons').then(mod => mod.So
 const PortfolioItem: React.FC<{ProjectIndex: number, width: number, height: number}> = ({ProjectIndex = 0, width = 0, height = 0}) => {
     // Array of projects
     const projects = [
-        {name: "Digital Portfolio", description: "Personal Project Website and Portfolio built to house my projects and experiences.", image: "Project1.png", mainStack: ['Next.js', 'React', 'TypeScript', 'TailwindCSS', 'FramerMotion', 'Vercel', 'GitHub'], post: '', github: 'https://github.com/Chris-Alexander-Pop/my-portfolio-site', live: 'https://chrispop.vercel.app/'},
-        {name: "Upgraded", description: "At Upgraded, I worked on modernizing a web scraper, optimized application performance, engineering a mobile app scraper, automated billing for clients, and revamped a grant auto-draft feature.", image: "Project1.png", mainStack: ['Next.js', 'React', 'JavaScript', 'TypeScript', 'Node.js', 'Express.js', 'TailwindCSS', 'Selenium', 'Airtable', 'OpenAI', 'Stripe', 'OpenCV', 'Vercel', 'GitHub'], post: '', github: '', live: 'https://www.getupgraded.ca/'},
-        {name: "Vahana", description: "Vahana is a team project focused on providing an affordable and environmentally sustainable carpooling platform for students. As the project lead, I directed the backend and app development efforts, ensuring the platform meets the needs of its users while aligning with our deployment plans for the US and Canada.", image: "Project1.png", mainStack: ['Next.js', 'React', 'TypeScript', 'TailwindCSS', 'Kotlin', 'Swift', 'JetpackCompose', 'AndroidStudio', 'AWS', 'Amplify', 'AppSync', 'GraphQL', 'Cognito', 'Lambda', 'APIGateway', 'DynamoDB', 'QLDB', 'S3Bucket', 'Stripe', 'GitHub'], post: '', github: '', live: ''},
-        {name: "PosturePal", description: "PosturePal is a wearable 'smart' posture corrector designed to help scoliosis patients recovering from spinal fusion surgery maintain proper sitting posture.", image: "Project1.png", mainStack: ['CPlusPlus', 'STM32', 'AutoCAD', 'GitHub'], post: '', github: 'https://github.com/Chris-Alexander-Pop/PosturePal', live: ''},
-        {name: "Bluetooth Model Car", description: "A remote controlled model car made in C++ using Arduino and communication via Bluetooth modules and Python.", image: "Project1.png", mainStack: ['CPlusPlus', 'Arduino', 'Python'], post: '', github: '', live: ''},
-        {name: "Knights of the Citadel", description: "A tower defense, real-time strategy game where players use spells and defense towers to protect their main tower from waves of enemies.", image: "Project1.png", mainStack: ['Python', 'GitHub', "VSCode"], post: '', github: 'https://github.com/Chris-Alexander-Pop/Knights-of-the-Citadel', live: ''},
+        {name: "Digital Portfolio", description: "Personal Project Website and Portfolio built to house my projects and experiences.", image: "PersonalWebsitePortfolioThumbnail.png", mainStack: ['Next.js', 'React', 'TypeScript', 'TailwindCSS', 'FramerMotion', 'Vercel', 'GitHub'], post: '/blogs/PortfolioWebsite', github: 'https://github.com/Chris-Alexander-Pop/my-portfolio-site', live: 'https://chrispop.vercel.app/'},
+        {name: "Upgraded", description: "At Upgraded, I worked on modernizing a web scraper, optimized application performance, engineering a mobile app scraper, automated billing for clients, and revamped a grant auto-draft feature.", image: "UpgradedPortfolioThumbnail.png", mainStack: ['Next.js', 'React', 'JavaScript', 'TypeScript', 'Node.js', 'Express.js', 'TailwindCSS', 'Selenium', 'Airtable', 'OpenAI', 'Stripe', 'OpenCV', 'Vercel', 'GitHub'], post: '/blogs/Upgraded', github: '', live: 'https://www.getupgraded.ca/'},
+        {name: "Vahana", description: "Vahana is a team project focused on providing an affordable and environmentally sustainable carpooling platform for students. As the project lead, I directed the backend and app development efforts, ensuring the platform meets the needs of its users while aligning with our deployment plans for the US and Canada.", image: "Project1.png", mainStack: ['Next.js', 'React', 'TypeScript', 'TailwindCSS', 'Kotlin', 'Swift', 'JetpackCompose', 'AndroidStudio', 'AWS', 'Amplify', 'AppSync', 'GraphQL', 'Cognito', 'Lambda', 'APIGateway', 'DynamoDB', 'QLDB', 'S3Bucket', 'Stripe', 'GitHub'], post: '/blogs/Vahana', github: '', live: ''},
+        {name: "PosturePal", description: "PosturePal is a proof of concept wearable 'smart' posture corrector designed to help scoliosis patients recovering from spinal fusion surgery maintain proper sitting posture.", image: "PosturePalPortfolioThumbnail.jpg", mainStack: ['CPlusPlus', 'STM32', 'AutoCAD', 'GitHub'], post: '/blogs/PosturePal', github: 'https://github.com/Chris-Alexander-Pop/PosturePal', live: ''},
+        {name: "Bluetooth Model Car", description: "A remote controlled model car made in C++ using Arduino and communication via Bluetooth modules and Python.", image: "BluetoothModelCarPortfolioThumbnail.png", mainStack: ['CPlusPlus', 'Arduino', 'Python'], post: '/blogs/BluetoothSmartCart', github: '', live: ''},
+        {name: "Knights of the Citadel", description: "A tower defense, real-time strategy game where players use spells and defense towers to protect their main tower from enemies.", image: "KnightsoftheCitadelPortfolioThumbnail.png", mainStack: ['Python', 'GitHub', "VSCode"], post: '/blogs/KnightsoftheCitadel', github: 'https://github.com/Chris-Alexander-Pop/Knights-of-the-Citadel', live: ''},
         {name: "Project 1", description: "This is project 1", image: "Project1.png", mainStack: ['AWS'], post: '', github: '', live: ''},
     ];
     // State to track if the component is mounted on the client side
@@ -71,7 +71,9 @@ const PortfolioItem: React.FC<{ProjectIndex: number, width: number, height: numb
                     {/* Link to the post */}
                     {projects[ProjectIndex].post &&
                         <Link href={`${projects[ProjectIndex].post}`} passHref>
-                            <HiDocument size={24} className=""/>
+                            {projects[ProjectIndex].github ? 
+                                <HiDocument size={24} className=""/>:<HiDocument size={24} className="mb-4 mr-4"/>
+                            }
                         </Link>
                     }
                     {/* GitHub icon with link */}
@@ -89,7 +91,9 @@ const PortfolioItem: React.FC<{ProjectIndex: number, width: number, height: numb
                     {/* Link to the live project */}
                     {projects[ProjectIndex].live &&
                         <Link href={`${projects[ProjectIndex].live}`} passHref>
-                            <IoLink size={24} className="mr-2"/>
+                            {projects[ProjectIndex].github ?
+                                <IoLink size={24} className="mr-4"/>:<IoLink size={24} className="mr-4 mb-4"/>
+                            }
                         </Link>
                     }
                 </div>

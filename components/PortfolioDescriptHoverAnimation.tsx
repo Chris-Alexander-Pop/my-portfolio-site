@@ -92,10 +92,10 @@ export const PortfolioAnimationRight: React.FC<{}> = () => {
               <PortfolioItem ProjectIndex={2} width={650} height={300} />
             </div>
             <div style={{ padding: '20px' }}>
-              <PortfolioItem ProjectIndex={4} width={275} height={300} />
+              <PortfolioItem ProjectIndex={4} width={260} height={300} />
             </div>
             <div style={{ padding: '20px' }}>
-              <PortfolioItem ProjectIndex={5} width={275} height={300} />
+              <PortfolioItem ProjectIndex={5} width={290} height={300} />
             </div>
           </motion.div>
         )}

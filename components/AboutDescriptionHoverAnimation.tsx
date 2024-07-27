@@ -98,8 +98,6 @@ const AboutDescriptionHoverAnimation: React.FC<{}> = () => {
                     >
                         {/* Description of the about page */}
                         <AboutDescription />
-                        {/* Scroll wheel component */}
-                        {/* <ScrollWheel /> */}
                     </motion.div>
                 }
             </div>
