@@ -18,18 +18,14 @@ export default function ResumePage() {
 
     // Define animation variants
     const variants = {
-        // Variant for when the page is visible
         visible: {
             opacity: 1,
             y: 0,
             transition: { duration: 1, ease: "easeInOut" },
-            display: "true"
         },
-        // Variant for when the page is initially hidden
         initial: {
             opacity: 0,
             y: 10,
-            display: "none"
         },
     };
 
@@ -47,12 +43,15 @@ export default function ResumePage() {
 
     // Return the ResumePage component
     return (
-        // Provide the hover state to child components
         <HoverProvider>
-            {/* Animate the page using the Framer Motion library */}
-            <motion.div layout animate={controls} variants={variants}>
-                {/* Render the Header component with the isHome prop set to false */}
-                <Header isHome = {false}/>
+            <motion.div layout animate={controls} variants={variants} className="flex flex-col h-screen">
+                <Header isHome={false} />
+                <div className="flex-1 overflow-hidden">
+                    <iframe
+                        src="/Chris_Pop_Resume.pdf"
+                        className="w-full h-full border-none"
+                    />
+                </div>
             </motion.div>
         </HoverProvider>
     );

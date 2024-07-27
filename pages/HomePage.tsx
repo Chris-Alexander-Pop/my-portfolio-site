@@ -67,7 +67,44 @@ const HomePage: React.FC = () => {
               <div className="absolute flex items-center justify-center z-10">
                 
                 <TechSkillsAnimation distance={"40"} direction={"cw"} stack={getPrimaryStack()} speed={1}/>
-                <TechSkillsAnimation distance={"60"} direction={"ccw"} stack={getSecondaryStack()} speed={3}/>
+                <TechSkillsAnimation distance={"60"} direction={"ccw"} stack={
+                  [
+                    "./Icons/Amplify.svg",
+                    "./Icons/AndroidStudio.svg",
+                    "./Icons/AWS.svg",
+                    "./Icons/GitHub.svg",
+                    "./Icons/Heroku.svg",
+                    "./Icons/Keystone.svg",
+                    "./Icons/Ktor.svg",
+                    "./Icons/Kubernetes.svg",
+                    "./Icons/MongoDB.svg",
+                    "./Icons/PostgresSQL.svg",
+                    "./Icons/QLDB.svg",
+                    "./Icons/S3Bucket.svg",
+                    "./Icons/Supabase.svg",
+                    "./Icons/TailwindCSS.svg",
+                    "./Icons/Vercel.svg",
+                    "./Icons/VSCode.svg"
+                  ]} speed={3}/>
+                <TechSkillsAnimation distance={"80"} direction={"cw"} stack={
+                  [
+                    "./Icons/Keystone.svg",
+                    "./Icons/Ktor.svg",
+                    "./Icons/Kubernetes.svg",
+                    "./Icons/MongoDB.svg",
+                    "./Icons/PostgresSQL.svg",
+                    "./Icons/QLDB.svg",
+                    "./Icons/S3Bucket.svg",
+                    "./Icons/Supabase.svg",
+                    "./Icons/TailwindCSS.svg",
+                    "./Icons/Vercel.svg",
+                    "./Icons/VSCode.svg",
+                    "./Icons/Amplify.svg",
+                    "./Icons/AndroidStudio.svg",
+                    "./Icons/AWS.svg",
+                    "./Icons/GitHub.svg",
+                    "./Icons/Heroku.svg"
+                  ]} speed={9}/>
               </div>
               
               <div className="absolute ml-88 z-40">

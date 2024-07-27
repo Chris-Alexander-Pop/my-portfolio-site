@@ -7,9 +7,9 @@ import PortfolioItem from './PortfolioItem';
 import { useAnimationLock } from '@/contexts/useAnimationLock';
 
 export const PortfolioAnimationLeft: React.FC<{}> = () => {
-  const { isPortfolioHovered, isAboutHovered, isResumeHovered } = GetHoverStates();
+  const { isPortfolioHovered, getLastHovered } = GetHoverStates();
   const controls = useAnimation();
-  const { setVariable } = useAnimationLock();
+  const { setVariable, getVariable } = useAnimationLock();
 
   useEffect(() => {
     if (isPortfolioHovered) {
@@ -27,36 +27,38 @@ export const PortfolioAnimationLeft: React.FC<{}> = () => {
     }
   }, [isPortfolioHovered, controls]);
 
-  return (
-    <AnimatePresence>
-      {true && (
-        <motion.div
-          initial={{ opacity: 0, x: -1000, y: -150 }}
-          animate={controls}
-          className="absolute"
-          style={{ display: 'flex' }}
-          onAnimationStart={() => setVariable('PortfolioAnimationState', true)}
-          onAnimationComplete={() => setVariable('PortfolioAnimationState', false)}
-        >
-          <div style={{ padding: '20px' }}>
-            <PortfolioItem ProjectIndex={0} width={300} height={300} />
-          </div>
-          <div style={{ padding: '20px' }}>
-            <PortfolioItem ProjectIndex={0} width={500} height={300} />
-          </div>
-          <div style={{ padding: '20px' }}>
-            <PortfolioItem ProjectIndex={0} width={400} height={300} />
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
-};
+  if (true) {
+    return (
+      <AnimatePresence>
+        {true && (
+          <motion.div
+            initial={{ opacity: 0, x: -1000, y: -175 }}
+            animate={controls}
+            className="absolute"
+            style={{ display: 'flex' }}
+            onAnimationStart={() => setVariable('PortfolioAnimationState', true)}
+            onAnimationComplete={() => setVariable('PortfolioAnimationState', false)}
+          >
+            <div style={{ padding: '20px' }}>
+              <PortfolioItem ProjectIndex={0} width={350} height={300} />
+            </div>
+            <div style={{ padding: '20px' }}>
+              <PortfolioItem ProjectIndex={1} width={500} height={300} />
+            </div>
+            <div style={{ padding: '20px' }}>
+              <PortfolioItem ProjectIndex={3} width={350} height={300} />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    );
+  };
+}
 
 export const PortfolioAnimationRight: React.FC<{}> = () => {
-  const { isPortfolioHovered } = GetHoverStates();
+  const { isPortfolioHovered, getLastHovered } = GetHoverStates();
   const controls = useAnimation();
-  const { setVariable } = useAnimationLock();
+  const { setVariable, getVariable } = useAnimationLock();
 
   useEffect(() => {
     if (isPortfolioHovered) {
@@ -74,28 +76,30 @@ export const PortfolioAnimationRight: React.FC<{}> = () => {
     }
   }, [isPortfolioHovered, controls]);
 
-  return (
-    <AnimatePresence>
-      {true && (
-        <motion.div
-          initial={{ opacity: 0, x: 1000, y: 200 }}
-          animate={controls}
-          className="absolute"
-          style={{ display: 'flex' }}
-          onAnimationStart={() => setVariable('PortfolioAnimationState', true)}
-          onAnimationComplete={() => setVariable('PortfolioAnimationState', false)}
-        >
-          <div style={{ padding: '20px' }}>
-            <PortfolioItem ProjectIndex={0} width={500} height={300} />
-          </div>
-          <div style={{ padding: '20px' }}>
-            <PortfolioItem ProjectIndex={0} width={400} height={300} />
-          </div>
-          <div style={{ padding: '20px' }}>
-            <PortfolioItem ProjectIndex={0} width={300} height={300} />
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
-};
+  if (true) {
+    return (
+      <AnimatePresence>
+        {true && (
+          <motion.div
+            initial={{ opacity: 0, x: 1000, y: 175 }}
+            animate={controls}
+            className="absolute"
+            style={{ display: 'flex' }}
+            onAnimationStart={() => setVariable('PortfolioAnimationState', true)}
+            onAnimationComplete={() => setVariable('PortfolioAnimationState', false)}
+          >
+            <div style={{ padding: '20px' }}>
+              <PortfolioItem ProjectIndex={2} width={650} height={300} />
+            </div>
+            <div style={{ padding: '20px' }}>
+              <PortfolioItem ProjectIndex={4} width={275} height={300} />
+            </div>
+            <div style={{ padding: '20px' }}>
+              <PortfolioItem ProjectIndex={5} width={275} height={300} />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    );
+  };
+}

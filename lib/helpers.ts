@@ -83,30 +83,61 @@ export const GetHoverStates = (): HoverStateObject => {
     };
 };
 
+/**
+ * Returns an array of file paths for primary stack icons.
+ *
+ * @return {string[]} An array of file paths for primary stack icons.
+ */
 export const getPrimaryStack = () => {
     return ["./Icons/TypeScript.svg", "./Icons/Kotlin.svg", "./Icons/CPlusPlus.svg", "./Icons/Python.svg", "./Icons/React.svg", "./Icons/Next.js.svg", "./Icons/Node.js.svg", "./Icons/Svelte.svg"];
 }
 
-export const getSecondaryStack = () => {
-    return [
-        "./Icons/Amplify.svg",
-        "./Icons/AndroidStudio.svg",
-        "./Icons/AWS.svg",
-        "./Icons/GitHub.svg",
-        "./Icons/Heroku.svg",
-        "./Icons/Keystone.svg",
-        "./Icons/Ktor.svg",
-        "./Icons/Kubernetes.svg",
-        "./Icons/MongoDB.svg",
-        "./Icons/PostgresSQL.svg",
-        "./Icons/QLDB.svg",
-        "./Icons/S3Bucket.svg",
-        "./Icons/Supabase.svg",
-        "./Icons/TailwindCSS.svg",
-        "./Icons/Vercel.svg",
-        "./Icons/VSCode.svg"
-      ];
-      
+/**
+ * Returns an array of file paths for secondary stack icons.
+ *
+ * @param {boolean} [alt=false] - If true, returns an alternate set of icons.
+ * @return {string[]} An array of file paths for secondary stack icons.
+ */
+export const getSecondaryStack = (alt: boolean) => {
+    if(alt){
+        return [
+            "./Icons/Keystone.svg",
+            "./Icons/Ktor.svg",
+            "./Icons/Kubernetes.svg",
+            "./Icons/MongoDB.svg",
+            "./Icons/PostgresSQL.svg",
+            "./Icons/QLDB.svg",
+            "./Icons/S3Bucket.svg",
+            "./Icons/Supabase.svg",
+            "./Icons/TailwindCSS.svg",
+            "./Icons/Vercel.svg",
+            "./Icons/VSCode.svg",
+            "./Icons/Amplify.svg",
+            "./Icons/AndroidStudio.svg",
+            "./Icons/AWS.svg",
+            "./Icons/GitHub.svg",
+            "./Icons/Heroku.svg"
+        ]
+    } else {
+        return [
+            "./Icons/Amplify.svg",
+            "./Icons/AndroidStudio.svg",
+            "./Icons/AWS.svg",
+            "./Icons/GitHub.svg",
+            "./Icons/Heroku.svg",
+            "./Icons/Keystone.svg",
+            "./Icons/Ktor.svg",
+            "./Icons/Kubernetes.svg",
+            "./Icons/MongoDB.svg",
+            "./Icons/PostgresSQL.svg",
+            "./Icons/QLDB.svg",
+            "./Icons/S3Bucket.svg",
+            "./Icons/Supabase.svg",
+            "./Icons/TailwindCSS.svg",
+            "./Icons/Vercel.svg",
+            "./Icons/VSCode.svg"
+        ]
+    }
 }
 
 
