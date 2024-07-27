@@ -88,22 +88,25 @@ const HomePage: React.FC = () => {
                   ]} speed={3}/>
                 <TechSkillsAnimation distance={"80"} direction={"cw"} stack={
                   [ 
-                    "./Icons/Keystone.svg",
-                    "./Icons/Ktor.svg",
-                    "./Icons/Kubernetes.svg",
-                    "./Icons/MongoDB.svg",
-                    "./Icons/PostgresSQL.svg",
-                    "./Icons/QLDB.svg",
+                    "./Icons/Airtable.svg",
+                    "./Icons/APIGateway.svg",
+                    "./Icons/AppSync.svg",
+                    "./Icons/Arduino.svg",
+                    "./Icons/AutoCAD.svg",
+                    "./Icons/CloudFront.svg",
+                    "./Icons/CloudWatch.svg",
+                    "./Icons/Cognito.svg",
+                    "./Icons/DynamoDB.svg",
+                    "./Icons/Express.js.svg",
+                    "./Icons/FramerMotion.svg",
+                    "./Icons/GraphQL.svg",
+                    "./Icons/JetpackCompose.svg",
+                    "./Icons/Lambda.svg",
+                    "./Icons/OpenAI.svg",
+                    "./Icons/OpenCV.svg",
                     "./Icons/S3Bucket.svg",
-                    "./Icons/Supabase.svg",
-                    "./Icons/TailwindCSS.svg",
-                    "./Icons/Vercel.svg",
-                    "./Icons/VSCode.svg",
-                    "./Icons/Amplify.svg",
-                    "./Icons/AndroidStudio.svg",
-                    "./Icons/AWS.svg",
-                    "./Icons/GitHub.svg",
-                    "./Icons/Heroku.svg"
+                    "./Icons/STM32.svg",
+                    "./Icons/Stripe.svg",
                   ]} speed={9}/>
               </div>
               

@@ -158,7 +158,7 @@ export const Blogs = (slug: string, all = false): BlogData | BlogDataCollection 
             name: "Upgraded",
             title: "My Experience at Upgraded",
             date: "May 2024 - Present",
-            paragraphs: ["/avatar.png", "content"],
+            paragraphs: ["Coming Soon"],
             type: "technical",
             stack: ['/Icons/Next.js.svg',  '/Icons/React.svg',  '/Icons/JavaScript.svg',  '/Icons/TypeScript.svg',  '/Icons/Node.js.svg',  '/Icons/TailwindCSS.svg',  '/Icons/Selenium.svg',  '/Icons/Airtable.svg',  '/Icons/OpenAI.svg',  '/Icons/Stripe.svg',  '/Icons/Vercel.svg',  '/Icons/GitHub.svg']
         },
@@ -166,7 +166,7 @@ export const Blogs = (slug: string, all = false): BlogData | BlogDataCollection 
             name: "Vahana",
             title: "My Development Journey in Vahana",
             date: "May 2024 - August 2024",
-            paragraphs: ["content"],
+            paragraphs: ["Coming Soon"],
             type: "technical",
             stack: ['/Icons/Next.js.svg', '/Icons/React.svg', '/Icons/TypeScript.svg', '/Icons/Kotlin.svg', '/Icons/Swift.svg', '/Icons/JetpackCompose.svg', '/Icons/AWS.svg', '/Icons/Amplify.svg', '/Icons/Stripe.svg', '/Icons/GitHub.svg']
         },
@@ -174,7 +174,7 @@ export const Blogs = (slug: string, all = false): BlogData | BlogDataCollection 
             name: "Digital Portfolio",
             title: "Developing my Digital Portfolio",
             date: "April 2024 - July 2024",
-            paragraphs: ["content"],
+            paragraphs: ["Coming Soon"],
             type: "technical",
             stack: ['/Icons/Next.js.svg', '/Icons/React.svg', '/Icons/TypeScript.svg', '/Icons/TailwindCSS.svg', '/Icons/FramerMotion.svg', '/Icons/Vercel.svg', '/Icons/GitHub.svg']
         },
@@ -182,7 +182,7 @@ export const Blogs = (slug: string, all = false): BlogData | BlogDataCollection 
             name: "Posture Pal",
             title: "ECE 198 Course Project: Posture Pal",
             date: "September 2023 - December 2023",
-            paragraphs: ["content"],
+            paragraphs: ["Coming Soon"],
             type: "technical",
             stack: ['/Icons/CPlusPlus.svg', '/Icons/STM32.svg', '/Icons/AutoCAD.svg', '/Icons/GitHub.svg']
         },
@@ -190,7 +190,7 @@ export const Blogs = (slug: string, all = false): BlogData | BlogDataCollection 
             name: "Knight of the Citadel",
             title: "ICS4U0 Course Project: Posture Pal",
             date: "February 2023 - June 2023",
-            paragraphs: ["content"],
+            paragraphs: ["Coming Soon"],
             type: "technical",
             stack: ['/Icons/Python.svg', '/Icons/GitHub.svg', '/Icons/VSCode.svg']
         },
@@ -198,7 +198,7 @@ export const Blogs = (slug: string, all = false): BlogData | BlogDataCollection 
             name: "Bluetooth Smart Cart",
             title: "Engineering a Bluetooth Smart Cart",
             date: "February 2022 - June 2022",
-            paragraphs: ["content"],
+            paragraphs: ["Coming Soon"],
             type: "technical",
             stack: ['/Icons/CPlusPlus.svg', '/Icons/Arduino.svg', '/Icons/Python.svg']
         },

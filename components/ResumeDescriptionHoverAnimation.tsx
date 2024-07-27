@@ -39,7 +39,7 @@ const TechSkillsAnimation: React.FC<{distance: string, direction: string, stack:
         }, 30);
 
         return () => clearInterval(intervalId);
-    }, [controls, getVariable, isResumeHovered, setVariable, speed]);
+    }, [controls, getLastHovered, getVariable, isResumeHovered, setVariable, speed]);
 
     if (true) { //isResumeHovered || (!isResumeHovered && getVariable('ResumeAnimationState') && getLastHovered() === 'resume')
         return (
