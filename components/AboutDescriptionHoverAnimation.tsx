@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { GetHoverStates } from '@/lib/helpers';
 import AboutDescription from "@/components/AboutDescription";
@@ -18,6 +18,7 @@ const AboutDescriptionHoverAnimation: React.FC<{}> = () => {
     const controls = useAnimation();
     const aboutDescriptionAnimation = useAnimation();
     const { variables, getVariable, setVariable } = useAnimationLock();
+    const [isClient, setIsClient] = useState(false);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const avatarVariants = {
@@ -32,13 +33,14 @@ const AboutDescriptionHoverAnimation: React.FC<{}> = () => {
      */
     useEffect(() => {
         if (((isAboutHovered && !getVariable('PortfolioAnimationState')) || (!isAboutHovered && getVariable('AboutDescriptionAnimationState') && !isResumeHovered && !isPortfolioHovered && getLastHovered() === 'about'))) {
-            console.log('about');
-            aboutDescriptionAnimation.start({ opacity: 1, scale: 1, x:60, transition: { duration: 0.05, bounce: 0, x: { bounce: 0 } } });
+            setIsClient(true);
+            aboutDescriptionAnimation.start({ opacity: 1, scale: 1, x:60, transition: { duration: 0.7, bounce: 0, x: { bounce: 0 } } });
             controls.start({
                 d: "M2,192 A64,0 0 1,1 198,192",
                 transition: { duration: 0.3 }
             });
         } else {
+            setIsClient(false);
             aboutDescriptionAnimation.start({ opacity: 0, scale: 0, x:-30, transition: { duration: 0.05, bounce: 0, x: { bounce: 0 } } });
             controls.start({
                 d: "M2,192 A64,64 0 1,1 198,192",
@@ -68,7 +70,7 @@ const AboutDescriptionHoverAnimation: React.FC<{}> = () => {
             <div className="relative flex justify-center">
                 <div className="relative">
                     {/* If the user is not hovering over the portfolio tabs, show the svg */}
-                    {!isPortfolioHovered && 
+                    {!isPortfolioHovered && isClient && 
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 200 200"
