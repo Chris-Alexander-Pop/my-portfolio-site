@@ -59,13 +59,13 @@ const HomePage: React.FC = () => {
             </div>
             {/* Render the main content of the page */}
             <div className="relative flex items-center justify-center h-90vh overflow-hidden">
+              
               <div className="absolute flex items-center justify-center z-40">
                 {/* Render the Avatar component with the canAnimate prop set to true */}
                 <Avatar canAnimate={true} />
               </div>
 
               <div className="absolute flex items-center justify-center z-10">
-                
                 <TechSkillsAnimation distance={"40"} direction={"cw"} stack={getPrimaryStack()} speed={1}/>
                 <TechSkillsAnimation distance={"60"} direction={"ccw"} stack={
                   [
@@ -114,6 +114,7 @@ const HomePage: React.FC = () => {
                 {/* Render the AboutDescriptionHoverAnimation component */}
                 <AboutDescriptionHoverAnimation />
               </div>
+
               {/* Render the PortfolioAnimationLeft and PortfolioAnimationRight components */}
               <PortfolioAnimationLeft />
               <PortfolioAnimationRight />

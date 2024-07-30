@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { GetHoverStates } from '@/lib/helpers';
 import AboutDescription from "@/components/AboutDescription";
-import { ScrollWheel } from '@/components/AboutTechStack';
 import { useAnimationLock } from '@/contexts/useAnimationLock';
 
 
@@ -22,8 +21,7 @@ const AboutDescriptionHoverAnimation: React.FC<{}> = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const avatarVariants = {
-        resting: { scale: 1, rotate: 0, opacity: 1, x: 0, y: 0, transition: {duration: 0.1, x: { bounce: 0 }, bounce: 0 } },
-        aboutAnimation: { scale: 1, rotate: 0, opacity: 1, x: 60, transition: { duration: 0.3, delay: 0.3, x: { bounce: 0 }, bounce: 0 } },
+        resting: { scale: 1, rotate: 0, opacity: 1, x: 0, y: 0, transition: { duration: 1, x: { bounce: 0 }, bounce: 0 } },
         resumeAnimation: { scale: 0.8, rotate: 0, opacity: 1, x: -35, transition: { duration: 0.3, x: { bounce: 0 }, bounce: 0 } },
         portfolioAnimation: { scale: 1, rotate: 0, opacity: 0, y: 1500, transition: { duration: 2, y: { bounce: 0 }, bounce: 0 } },
       };
@@ -33,7 +31,8 @@ const AboutDescriptionHoverAnimation: React.FC<{}> = () => {
      * It starts the animation of the path and the description.
      */
     useEffect(() => {
-        if (isAboutHovered) {
+        if (((isAboutHovered && !getVariable('PortfolioAnimationState')) || (!isAboutHovered && getVariable('AboutDescriptionAnimationState') && !isResumeHovered && !isPortfolioHovered && getLastHovered() === 'about'))) {
+            console.log('about');
             aboutDescriptionAnimation.start({ opacity: 1, scale: 1, x:60, transition: { duration: 0.05, bounce: 0, x: { bounce: 0 } } });
             controls.start({
                 d: "M2,192 A64,0 0 1,1 198,192",
@@ -46,16 +45,18 @@ const AboutDescriptionHoverAnimation: React.FC<{}> = () => {
                 transition: { duration: 0.3 }
             });
         }
-    }, [isAboutHovered, controls, aboutDescriptionAnimation, avatarVariants]);
+    }, [isAboutHovered, controls, aboutDescriptionAnimation, avatarVariants, getVariable, isResumeHovered, isPortfolioHovered, getLastHovered]);
 
     return (
         <motion.div 
         initial="resting"
             // Set the animation variant based on the hover state
             animate={
-                (isResumeHovered || (!isResumeHovered && getVariable('ResumeAnimationState') && !isAboutHovered && !isPortfolioHovered && getLastHovered() === 'resume'))
-                        ? 'resumeAnimation'
-                        : (isPortfolioHovered || (!isPortfolioHovered && getVariable('PortfolioAnimationState') && !isAboutHovered && !isResumeHovered && getLastHovered() === 'portfolio'))
+                ((isAboutHovered && !getVariable('PortfolioAnimationState')) || (!isAboutHovered && getVariable('AboutDescriptionAnimationState') && !isResumeHovered && !isPortfolioHovered && getLastHovered() === 'about'))
+                ? 'resting'
+                : (isResumeHovered || (!isResumeHovered && getVariable('ResumeAnimationState') && !isAboutHovered && !isPortfolioHovered && getLastHovered() === 'resume'))
+                    ? 'resumeAnimation'
+                    : (isPortfolioHovered || (!isPortfolioHovered && getVariable('PortfolioAnimationState') && !isAboutHovered && !isResumeHovered && getLastHovered() === 'portfolio'))
                         ? 'portfolioAnimation'
                         : 'resting'
             }

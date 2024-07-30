@@ -1,5 +1,5 @@
 'use client'
-import { motion } from 'framer-motion';
+import { delay, motion } from 'framer-motion';
 import { GetHoverStates } from '@/lib/helpers';
 import Image from 'next/image';
 import React from 'react';
@@ -17,7 +17,7 @@ const Avatar: React.FC<{ canAnimate: boolean }> = ({ canAnimate }) => {
   const { variables, getVariable, setVariable } = useAnimationLock();
 
   const avatarVariants = {
-    resting: { scale: 1, rotate: 0, opacity: 1, x: 0, y: 0, transition: { duration: 1, x: { bounce: 0 }, bounce: 0 } },
+    resting: { scale: 1, rotate: 0, opacity: 1, x: 0, y: 0, transition: { duration: 1, x: { bounce: 0 }, bounce: 0} },
     aboutAnimation: { scale: 1, rotate: 0, opacity: 1, x: -350, transition: { duration: 0.3, x: { bounce: 0 }, bounce: 0 } },
     resumeAnimation: { scale: 0.8, rotate: 0, opacity: 1, transition: { duration: 0.3, x: { bounce: 0 }, bounce: 0 } },
     portfolioAnimation: { scale: 1, rotate: 0, opacity: 0, y: 1500, transition: { duration: 2, x: { bounce: 0 }, bounce: 0 } },
@@ -30,7 +30,7 @@ const Avatar: React.FC<{ canAnimate: boolean }> = ({ canAnimate }) => {
       initial="resting"
       animate={
         canAnimate
-          ? isAboutHovered
+          ? ((isAboutHovered && !getVariable('PortfolioAnimationState')) || (!isAboutHovered && getVariable('AboutDescriptionAnimationState') && !isResumeHovered && !isPortfolioHovered && getLastHovered() === 'about'))
             ? 'aboutAnimation'
             : (isResumeHovered || (!isResumeHovered && getVariable('ResumeAnimationState') && !isAboutHovered && !isPortfolioHovered && getLastHovered() === 'resume'))
               ? 'resumeAnimation'
