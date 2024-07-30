@@ -1,7 +1,7 @@
 # My Portfolio Site
 
 This is a Next.js project that serves as my personal portfolio website. It showcases my projects, experiences, and skills.
-Site link: chrispop.vercel.app
+Site link: [chrispop.vercel.app](https://chrispop.vercel.app)
 
 ## Features
 
